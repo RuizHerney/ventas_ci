@@ -76,10 +76,10 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
-	'dbdriver' => 'mysqli',
+	'username' => 'root', # nombre de usuario
+	'password' => '', # contraseña
+	'database' => 'ventas_ci', # nombre de la base de datos
+	'dbdriver' => 'mysqli', # nombre del driver de la base de datos
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
