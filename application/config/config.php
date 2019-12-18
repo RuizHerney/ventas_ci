@@ -23,7 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = '';
+ # Pegamos la ruta raiz del proyecto
+$config['base_url'] = 'http://localhost/ventas_ci/';
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,8 @@ $config['base_url'] = '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+ # Despues de crear y modificar el archivo .htaccess eliminamos index.php
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
