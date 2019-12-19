@@ -8,5 +8,7 @@
 <link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/all.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/adminlte.min.css">
+
+<link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/dataTables.bootstrap4.css">
 <!-- Google Font: Source Sans Pro -->
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">

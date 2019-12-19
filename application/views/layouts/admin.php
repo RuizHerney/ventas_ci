@@ -19,7 +19,7 @@
       <div class="content">
         <div class="container-fluid">
               <!-- Vista a mostrar -->
-              
+              <?php require APPPATH . 'views/' . $body?>
         </div>
       </div>
 

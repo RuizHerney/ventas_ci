@@ -14,24 +14,22 @@ class Template
         if (! is_null($view)){
 
             if(file_exists( APPPATH . '/views/modules/' . $layout . '/' .$view . '.php')) {
-                $view_path = 'modules/' . $layout . '/' . $view; 
+                $view_path = 'modules/' . $layout . '/' . $view . '.php'; 
             }else{
                 show_error('Unable to load the requested file: ' . APPPATH . 'views/modules/' . $layout . '/' .$view);
             }
 
-            $body = $this->ci->load->view($view_path, $data, TRUE);
-
             if ( is_null($data) ) 
             {
-                $data = array('body' => $body);
+                $data = array('body' => $view_path);
             }
             else if ( is_array($data) )
             {
-                $data['body'] = $body;
+                $data['body'] = $view_path;
             }
-            else if ( is_object($data) )
+            else if ( is_object($view_path) )
             {
-                $data->body = $body;
+                $data->body = $view_path;
             }
 
             $this->ci->load->view('layouts/' . $layout, $data);
