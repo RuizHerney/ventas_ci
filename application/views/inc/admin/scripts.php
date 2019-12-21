@@ -11,6 +11,22 @@
 
   <script>
     $(function() {
+
+      var base_url = '<?php echo base_url();?>';
+
+      $('.btn-view').on('click', function(){
+        var id = $(this).val();
+
+        $.ajax({
+
+            url: base_url + 'matenimiento/categoria/view/' + id,
+            type: 'POST',
+            success:function(res){
+              $('#modal-default .modal-body').html(res);
+            }
+        })
+      })
+
       $("#example1").DataTable({
         "language": {
           "lengthMenu": "Mostrar _MENU_ registros por pagina",
