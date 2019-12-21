@@ -7,7 +7,7 @@
   <script src="<?php echo base_url() ?>/public/assets/js/datatable/dataTables.bootstrap4.js"></script>
   <!-- AdminLTE App -->
   <script src="<?php echo base_url() ?>/public/assets/js/adminlte.min.js"></script>
-  <script src="<?php echo base_url() ?>/public/assets/js/datatable/demo.min.js"></script>
+  <script src="<?php echo base_url() ?>/public/assets/js/datatable/demo.js"></script>
 
   <script>
     $(function() {

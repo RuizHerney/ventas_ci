@@ -1,6 +1,11 @@
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title"><?php echo $title ?></h3>
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="card-title"><?php echo $title ?></h3>
+            <a href="" class="btn btn-primary">
+                <i class="far fa-plus"></i>
+            </a>
+        </div>
     </div>
     <!-- /.card-header -->
     <div class="card-body">

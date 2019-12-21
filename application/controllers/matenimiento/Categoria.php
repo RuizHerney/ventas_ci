@@ -19,7 +19,6 @@ class Categoria extends CI_Controller
 
 		$data = array(
 			'title' => 'Categorias',
-			'subTitle' => 'Editar',
 			'categorias' => $this->CategoriaModel->getCategorias()
 		);
 		$this->load->library('template');
