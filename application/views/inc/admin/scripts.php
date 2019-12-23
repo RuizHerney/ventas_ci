@@ -14,12 +14,25 @@
 
       var base_url = '<?php echo base_url();?>';
 
-      $('.btn-view').on('click', function(){
+      $('.btn-view-category').on('click', function(){
         var id = $(this).val();
 
         $.ajax({
 
             url: base_url + 'matenimiento/categoria/view/' + id,
+            type: 'POST',
+            success:function(res){
+              $('#modal-default .modal-body').html(res);
+            }
+        })
+      })
+
+      $('.btn-view-client').on('click', function(){
+        var id = $(this).val();
+
+        $.ajax({
+
+            url: base_url + 'matenimiento/cliente/view/' + id,
             type: 'POST',
             success:function(res){
               $('#modal-default .modal-body').html(res);

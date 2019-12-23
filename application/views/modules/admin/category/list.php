@@ -26,7 +26,7 @@
                         <td><?php echo $Category->description ?></td>
                         <td>
                             <div class="btn-group">
-                                <button class="btn btn-info m-1 btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $Category->id?>">
+                                <button class="btn btn-info m-1 btn-view-category" data-toggle="modal" data-target="#modal-default" value="<?php echo $Category->id?>">
                                     <i class="far fa-search nav-icon"></i>
                                 </button>
                                 <a href="<?php base_url(); ?>categoria/edit/<?php echo $Category->id ?>" class="btn btn-primary m-1">

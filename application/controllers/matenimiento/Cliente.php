@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Categoria extends CI_Controller
+class Cliente extends CI_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
 
 		# Hacemos los llamados a los modelos necesarios
-		$this->load->model('CategoryModel');
+		$this->load->model('ClientModel');
 		$this->load->model('StateModel');
 
 		# Validamos si existe una session
@@ -22,50 +22,58 @@ class Categoria extends CI_Controller
 
 		# Array con los datos a enviar a la vista
 		$data = array(
-			'title' => 'Categorias',
-			'categories' => $this->CategoryModel->getCategories()
+			'title' => 'Clientes',
+			'clients' => $this->ClientModel->getClients(),
 		);
 
 		# Llamado a la clase template
 		$this->load->library('template');
-		$this->template->load('admin', 'category/list', $data);
+		$this->template->load('admin', 'client/list', $data);
 	} # End method Admin
 
 	public function add()
 	{
 		# Array con los datos a enviar a la vista
 		$data = array(
-			'title' => 'Categorias',
+			'title' => 'Clientes',
 			'subTitle' => 'Agregar',
 		);
 
 		# Llamado a la clase template
 		$this->load->library('template');
-		$this->template->load('admin', 'category/add', $data);
+		$this->template->load('admin', 'client/add', $data);
 	} # End method add
 
 	public function create()
 	{
 		# Recuperamos los datos de la vista que vienen por el method post
 		$name = $this->input->post('name');
-		$description = $this->input->post('description');
+		$last_name = $this->input->post('last_name');
+		$phone = $this->input->post('phone');
+		$address = $this->input->post('address');
+		$ruc = $this->input->post('ruc');
+		$business = $this->input->post('business');
 
 		# Array con los datos a enviar al modelo
 		$data = array(
 			'name' =>  $name,
-			'description' => $description,
+			'last_name' => $last_name,
+			'phone' => $phone,
+			'address' => $address,
+			'ruc' => $ruc,
+			'business' => $business,
 			'state_id' => '1'
 		);
 
-		# Validamos que la categoria halla sido registrado correctamente
-		if ($this->CategoryModel->saveGategory($data)) {
+		# Validamos que el cliente halla sido registrado correctamente
+		if ($this->ClientModel->saveClient($data)) {
 
 			# Lo enviamos a la vista list 
-			redirect(base_url() . 'matenimiento/categoria');
+			redirect(base_url() . 'matenimiento/cliente');
 		} else {
 			# Lo enviamos a la vista add con sus errores 
 			$this->session->set_flashdata('error', 'No se pudo guradar la informacion');
-			redirect(base_url() . 'categoria/add');
+			redirect(base_url() . 'cliente/add');
 		}
 	} # End method create
 
@@ -73,39 +81,47 @@ class Categoria extends CI_Controller
 	{
 		# Array con los datos a enviar a la vista
 		$data = array(
-			'title' => 'Categorias',
+			'title' => 'Clientes',
 			'subTitle' => 'editar',
-			'category' => $this->CategoryModel->getGategoryById($id),
+			'client' => $this->ClientModel->getClientById($id),
 			'states' => $this->StateModel->getStates(),
 		);
 
 		# Llamado a la clase template
 		$this->load->library('template');
-		$this->template->load('admin', 'category/edit', $data);
+		$this->template->load('admin', 'client/edit', $data);
 	} # End method edit
 
 	public function update($id)
 	{
 		# Recuperamos los datos de la vista que vienen por el method post
 		$name = $this->input->post('name');
-		$description = $this->input->post('description');
+		$last_name = $this->input->post('last_name');
+		$phone = $this->input->post('phone');
+		$address = $this->input->post('address');
+		$ruc = $this->input->post('ruc');
+		$business = $this->input->post('business');
 		$state_id = $this->input->post('state_id');
 
 		# Array con los datos a enviar al modelo
 		$data = array(
 			'name' => $this->input->post('name'),
-			'description' => $this->input->post('description'),
+			'last_name' => $this->input->post('last_name'),
+			'phone' => $this->input->post('phone'),
+			'address' => $this->input->post('address'),
+			'ruc' => $this->input->post('ruc'),
+			'business' => $this->input->post('business'),
 			'state_id' => $this->input->post('state_id'),
 		);
 
-		# Validamos que el categoria halla sido modificado correctamente
-		if ($this->CategoryModel->updateCategory($id, $data)) {
+		# Validamos que el cliente halla sido modificado correctamente
+		if ($this->ClientModel->updateClient($id, $data)) {
 			# Lo enviamos a la vista list 
-			redirect(base_url() . 'matenimiento/categoria');
+			redirect(base_url() . 'matenimiento/cliente');
 		} else {
 			# Lo enviamos a la vista update con sus errores 
 			$this->session->set_flashdata('error', 'No se pudo editar la informacion');
-			redirect(base_url() . 'categoria/edit');
+			redirect(base_url() . 'cliente/edit');
 		}
 	} # End method udpate
 
@@ -113,22 +129,22 @@ class Categoria extends CI_Controller
 	{
 		# Array con los datos a enviar a la vista
 		$data = array(
-			'category' => $this->CategoryModel->getGategoryById($id),
+			'client' => $this->ClientModel->getClientById($id),
 		);
 		# Lo enviamos a la vista view 
-		$this->load->view('modules/admin/category/view', $data);
+		$this->load->view('modules/admin/client/view', $data);
 	} # End method view
 
 	public function delete($id)
 	{
-		# Validamos que la categoria halla sido eliminado correctamente
-		if ($this->CategoryModel->deleteCategory($id)) {
+		# Validamos que el cliente halla sido eliminado correctamente
+		if ($this->ClientModel->deleteClient($id)) {
 			# Lo enviamos a la vista list 
-			redirect(base_url() . 'matenimiento/categoria');
+			redirect(base_url() . 'matenimiento/cliente');
 		} else {
 			# Lo enviamos a la vista list con sus errores 
 			$this->session->set_flashdata('error', 'No se pudo borrar la informacion');
-			redirect(base_url() . 'matenimiento/categoria');
+			redirect(base_url() . 'matenimiento/cliente');
 		}
 	} # End method delete
 
