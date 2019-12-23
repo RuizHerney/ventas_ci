@@ -59,9 +59,9 @@
                 </li>
 
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="<?php echo base_url();?>matenimiento/producto" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Productos</p>
+                    <p>Productos</p> 
                   </a>
                 </li>
 

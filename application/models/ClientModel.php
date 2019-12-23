@@ -6,10 +6,10 @@ class ClientModel extends CI_Model
 
     public function getClients()
     {
-        # Filtramos categorias en el estado activo
+        # Filtramos cliente en el estado activo
         $this->db->where('state_id', 1);
 
-        # Traemos todas las categorias con el filtro anterior
+        # Traemos todas las cliente con el filtro anterior
         $clients = $this->db->get('clients');
 
         # Retornamos los clientes
@@ -18,16 +18,16 @@ class ClientModel extends CI_Model
 
     public function saveClient($data)
     {
-        # Guardamos el registro de categoria
+        # Guardamos el registro de cliente
         return $this->db->insert('clients', $data);
     } # End method saveClient
 
     public function getClientById($id)
     {
-        # Filtramos categorias por id
+        # Filtramos cliente por id
         $this->db->where('id', $id);
 
-        # Traemos todas las categorias con el filtro anterior
+        # Traemos todas las client con el filtro anterior
         $client = $this->db->get('clients');
 
         # Retornamos el cliente
@@ -36,8 +36,10 @@ class ClientModel extends CI_Model
 
     public function updateClient($id, $data)
     {
+        # Filtramos cliente por id
         $this->db->where('id', $id);
 
+        # Modificamos el registro de cliente
         return $this->db->update('clients', $data);
     } # End method updateClient
 
@@ -53,6 +55,6 @@ class ClientModel extends CI_Model
 
         # Modificamos al cliente de estado 
         return $this->db->update('clients', $data);
-    } # End method deleteCategory
+    } # End method deleteClient
 
 } # End class User

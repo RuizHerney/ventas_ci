@@ -40,6 +40,19 @@
         })
       })
 
+      $('.btn-view-product').on('click', function(){
+        var id = $(this).val();
+
+        $.ajax({
+
+            url: base_url + 'matenimiento/producto/view/' + id,
+            type: 'POST',
+            success:function(res){
+              $('#modal-default .modal-body').html(res);
+            }
+        })
+      })
+
       $("#example1").DataTable({
         "language": {
           "lengthMenu": "Mostrar _MENU_ registros por pagina",
