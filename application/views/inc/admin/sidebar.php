@@ -34,7 +34,7 @@
             <li class="nav-item has-treeview">
 
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-tools"></i>
                 <p>
                   Matenimiento
                   <i class="right fas fa-angle-left"></i>
@@ -72,7 +72,7 @@
             <li class="nav-item has-treeview">
 
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-chart-line"></i>
                 <p>
                   Movimientos
                   <i class="right fas fa-angle-left"></i>
@@ -95,7 +95,7 @@
             <li class="nav-item has-treeview">
 
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-clipboard-list"></i>
                 <p>
                   Reportes
                   <i class="right fas fa-angle-left"></i>
@@ -118,7 +118,7 @@
             <li class="nav-item has-treeview">
 
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-user-shield"></i>
                 <p>
                   Administrador
                   <i class="right fas fa-angle-left"></i>
