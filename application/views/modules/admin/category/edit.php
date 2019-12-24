@@ -21,23 +21,38 @@
 
             <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" class="form-control" name="name" id="name" value="<?php echo $category->name ?>">
+                <input type="text" class="form-control <?php echo !empty(form_error('name'))? 'is-invalid' : '';?>" name="name" id="name" value="<?php echo $category->name ?>">
+                <?php echo form_error(
+                    'name',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="description">Descripcion</label>
-                <input type="text" class="form-control" name="description" id="description" value="<?php echo $category->description ?>">
+                <input type="text" class="form-control <?php echo !empty(form_error('description'))? 'is-invalid' : '';?>" name="description" id="description" value="<?php echo $category->description ?>">
+                <?php echo form_error(
+                    'description',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="">Estado</label>
-                <select name="state_id" id="state" class="form-control">
+                <select name="state_id" id="state" class="form-control <?php echo !empty(form_error('id_state'))? 'is-invalid' : '';?>">
                     <?php foreach ($states as $state) : ?>
                         <option <?php if ($state->id == $category->state_id) { echo 'selected'; }?> value="<?php echo $state->id ?>">
                             <?php echo $state->name ?>
                         </option>
                     <?php endforeach ?>
                 </select>
+                <?php echo form_error(
+                    'state_id',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">

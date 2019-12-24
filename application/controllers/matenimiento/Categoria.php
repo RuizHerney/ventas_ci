@@ -50,22 +50,40 @@ class Categoria extends CI_Controller
 		$name = $this->input->post('name');
 		$description = $this->input->post('description');
 
-		# Array con los datos a enviar al modelo
-		$data = array(
-			'name' =>  $name,
-			'description' => $description,
-			'state_id' => '1'
+		# Validacion de formularios
+		$this->form_validation->set_rules(
+			'name',
+			'Nombre',
+			'required|is_unique[categories.name]',
 		);
 
-		# Validamos que la categoria halla sido registrado correctamente
-		if ($this->CategoryModel->saveGategory($data)) {
+		$this->form_validation->set_rules(
+			'description',
+			'Descripcion',
+			'required',
+		);
 
-			# Lo enviamos a la vista list 
-			redirect(base_url() . 'matenimiento/categoria');
+		if ($this->form_validation->run()) {
+
+			# Array con los datos a enviar al modelo
+			$data = array(
+				'name' =>  $name,
+				'description' => $description,
+				'state_id' => '1'
+			);
+
+			# Validamos que la categoria halla sido registrado correctamente
+			if ($this->CategoryModel->saveGategory($data)) {
+
+				# Lo enviamos a la vista list 
+				redirect(base_url() . 'matenimiento/categoria');
+			} else {
+				# Lo enviamos a la vista add con sus errores 
+				$this->session->set_flashdata('error', 'No se pudo guradar la informacion');
+				redirect(base_url() . 'categoria/add');
+			}
 		} else {
-			# Lo enviamos a la vista add con sus errores 
-			$this->session->set_flashdata('error', 'No se pudo guradar la informacion');
-			redirect(base_url() . 'categoria/add');
+			$this->add();
 		}
 	} # End method create
 
@@ -91,21 +109,52 @@ class Categoria extends CI_Controller
 		$description = $this->input->post('description');
 		$state_id = $this->input->post('state_id');
 
-		# Array con los datos a enviar al modelo
-		$data = array(
-			'name' => $this->input->post('name'),
-			'description' => $this->input->post('description'),
-			'state_id' => $this->input->post('state_id'),
+		$category = $this->CategoryModel->getGategoryById($id);
+
+		if ($name == $category->name) {
+			$unique = '';
+		}else{
+			$unique = '|is_unique[categories.name]';
+		}
+		# Validacion de formularios
+		$this->form_validation->set_rules(
+			'name',
+			'Nombre',
+			'required' . $unique
 		);
 
-		# Validamos que el categoria halla sido modificado correctamente
-		if ($this->CategoryModel->updateCategory($id, $data)) {
-			# Lo enviamos a la vista list 
-			redirect(base_url() . 'matenimiento/categoria');
+		$this->form_validation->set_rules(
+			'description',
+			'Descripcion',
+			'required',
+		);
+
+		$this->form_validation->set_rules(
+			'state_id',
+			'Estado',
+			'required',
+		);
+
+		if ($this->form_validation->run()) {
+
+			# Array con los datos a enviar al modelo
+			$data = array(
+				'name' => $this->input->post('name'),
+				'description' => $this->input->post('description'),
+				'state_id' => $this->input->post('state_id'),
+			);
+
+			# Validamos que el categoria halla sido modificado correctamente
+			if ($this->CategoryModel->updateCategory($id, $data)) {
+				# Lo enviamos a la vista list 
+				redirect(base_url() . 'matenimiento/categoria');
+			} else {
+				# Lo enviamos a la vista update con sus errores 
+				$this->session->set_flashdata('error', 'No se pudo editar la informacion');
+				redirect(base_url() . 'categoria/edit');
+			}
 		} else {
-			# Lo enviamos a la vista update con sus errores 
-			$this->session->set_flashdata('error', 'No se pudo editar la informacion');
-			redirect(base_url() . 'categoria/edit');
+			$this->edit($id);
 		}
 	} # End method udpate
 
