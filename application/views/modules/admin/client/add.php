@@ -12,7 +12,7 @@
                 </button>
                 <p>
                     <i class="icon fa fa-ban"></i>
-                    <?php echo $this->session->flashdata('error');?>
+                    <?php echo $this->session->flashdata('error'); ?>
                 </p>
             </div>
         <?php endif ?>
@@ -21,11 +21,6 @@
             <div class="form-group">
                 <label for="name">Nombre</label>
                 <input type="text" class="form-control" name="name" id="name">
-            </div>
-
-            <div class="form-group">
-                <label for="last_name">Apellidos</label>
-                <input type="text" class="form-control" name="last_name" id="last_name">
             </div>
 
             <div class="form-group">
@@ -42,11 +37,36 @@
                 <label for="ruc">Ruc</label>
                 <input type="text" class="form-control" name="ruc" id="ruc">
             </div>
+
+            <div class="form-group">
+                <label for="type_client_id">Tipo de usuario</label>
+                <select class="form-control" name="type_client_id" id="type_client_id">
+                    <option value="">Seleccione...</option>
+                    <?php foreach ($type_clients as $type_client) : ?>
+                        <option value="<?php echo $type_client->id ?>">
+                            <?php echo $type_client->name ?>
+                        </option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="type_document_id">Tipo de documento</label>
+                <select class="form-control" name="type_document_id" id="type_document_id">
+                    <option value="">Seleccione...</option>
+                    <?php foreach ($type_documents as $type_document) : ?>
+                        <option value="<?php echo $type_document->id ?>">
+                            <?php echo $type_document->name?>
+                        </option>
+                    <?php endforeach ?>
+                </select>
+            </div>
             
             <div class="form-group">
-                <label for="business">Empresa</label>
-                <input type="text" class="form-control" name="business" id="business">
+                <label for="num_document">Documento</label>
+                <input type="text" class="form-control" name="num_document" id="num_document">
             </div>
+
 
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn.flat">

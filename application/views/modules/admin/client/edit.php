@@ -25,11 +25,6 @@
             </div>
 
             <div class="form-group">
-                <label for="last_name">Apellidos</label>
-                <input type="text" class="form-control" name="last_name" id="last_name" value="<?php echo $client->last_name ?>">
-            </div>
-
-            <div class="form-group">
                 <label for="phone">Telefono</label>
                 <input type="text" class="form-control" name="phone" id="phone" value="<?php echo $client->phone ?>">
             </div>
@@ -45,10 +40,32 @@
             </div>
 
             <div class="form-group">
-                <label for="business">Empresa</label>
-                <input type="text" class="form-control" name="business" id="business" value="<?php echo $client->business ?>">
+                <label for="type_client_id">Tipo de cliente</label>
+                <select name="type_client_id" id="type_client_id" class="form-control">
+                    <?php foreach ($type_clients as $type_client) : ?>
+                        <option <?php if ($type_client->id == $client->type_client_id) { echo 'selected'; }?> value="<?php echo $type_client->id ?>">
+                            <?php echo $type_client->name ?>
+                        </option>
+                    <?php endforeach ?>
+                </select>
             </div>
 
+            <div class="form-group">
+                <label for="type_document_id">Tipo documento</label>
+                <select name="type_document_id" id="type_document_id" class="form-control">
+                    <?php foreach ($type_documents as $type_document) : ?>
+                        <option <?php if ($type_document->id == $client->type_document_id) { echo 'selected'; }?> value="<?php echo $type_document->id ?>">
+                            <?php echo $type_document->name ?>
+                        </option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="num_document">Documento</label>
+                <input type="text" class="form-control" name="num_document" id="num_document" value="<?php echo $client->num_document?>">
+            </div>
+            
             <div class="form-group">
                 <label for="">Estado</label>
                 <select name="state_id" id="state" class="form-control">
@@ -59,6 +76,7 @@
                     <?php endforeach ?>
                 </select>
             </div>
+
 
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn.flat">

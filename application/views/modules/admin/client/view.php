@@ -6,12 +6,6 @@
 
 <p>
     <strong>
-        Apellidos : <?php echo $client->last_name;?>
-    </strong>
-</p>
-
-<p>
-    <strong>
         Telefono : <?php echo $client->phone;?>
     </strong>
 </p>
@@ -30,7 +24,19 @@
 
 <p>
     <strong>
-        Empresa : <?php echo $client->business;?>
+        Tipo cliente : <?php echo $client->typeClient;?>
+    </strong>
+</p>
+
+<p>
+    <strong>
+        Tipo Documento : <?php echo $client->typeDocument;?>
+    </strong>
+</p>
+
+<p>
+    <strong>
+        Numero Documento : <?php echo $client->num_document;?>
     </strong>
 </p>
 

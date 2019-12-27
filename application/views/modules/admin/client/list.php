@@ -14,11 +14,11 @@
                 <tr>
                     <th>#</th>
                     <th>Nombre</th>
-                    <th>Apellidos</th>
                     <th>Telefono</th>
                     <th>Direccion</th>
                     <th>RUC</th>
-                    <th>Empresa</th>
+                    <th>T. cliente</th>
+                    <th>T. documento</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -27,11 +27,11 @@
                     <tr>
                         <td><?php echo $client->id ?></td>
                         <td><?php echo $client->name ?></td>
-                        <td><?php echo $client->last_name ?></td>
                         <td><?php echo $client->phone ?></td>
                         <td><?php echo $client->address ?></td>
                         <td><?php echo $client->ruc ?></td>
-                        <td><?php echo $client->business ?></td>
+                        <td><?php echo $client->typeClient ?></td>
+                        <td><?php echo $client->typeDocument ?></td>
                         <td>
                             <div class="btn-group">
                                 <button class="btn btn-info m-1 btn-view-client" data-toggle="modal" data-target="#modal-default" value="<?php echo $client->id ?>">

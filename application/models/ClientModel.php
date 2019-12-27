@@ -4,17 +4,32 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class ClientModel extends CI_Model
 {
 
+    /*    
+        public function getClients()
+        {
+            # Filtramos cliente en el estado activo
+            $this->db->where('state_id', 1);
+
+            # Traemos todas las cliente con el filtro anterior
+            $clients = $this->db->get('clients');
+
+            # Retornamos los clientes
+            return $clients->result();
+        } # End method getClients
+    */
+
     public function getClients()
     {
-        # Filtramos cliente en el estado activo
-        $this->db->where('state_id', 1);
+        $this->db->select('c.*, tc.name as typeClient, td.name as typeDocument');
+        $this->db->from('clients c');
+        $this->db->join('types_clients tc', 'c.type_client_id = tc.id');
+        $this->db->join('types_documents td', 'c.type_document_id = td.id');
+        $this->db->where('c.state_id', '1');
 
-        # Traemos todas las cliente con el filtro anterior
-        $clients = $this->db->get('clients');
+        $clients = $this->db->get();
 
-        # Retornamos los clientes
         return $clients->result();
-    } # End method getClients
+    } # End method getCLients
 
     public function saveClient($data)
     {
@@ -24,11 +39,14 @@ class ClientModel extends CI_Model
 
     public function getClientById($id)
     {
-        # Filtramos cliente por id
-        $this->db->where('id', $id);
+        $this->db->select('c.*, tc.name as typeClient, td.name as typeDocument');
+        $this->db->from('clients c');
+        $this->db->join('types_clients tc', 'c.type_client_id = tc.id');
+        $this->db->join('types_documents td', 'c.type_document_id = td.id');
 
-        # Traemos todas las client con el filtro anterior
-        $client = $this->db->get('clients');
+        $this->db->where('c.id', $id);
+
+        $client = $this->db->get();
 
         # Retornamos el cliente
         return $client->row();

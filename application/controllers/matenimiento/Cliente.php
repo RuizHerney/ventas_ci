@@ -9,6 +9,8 @@ class Cliente extends CI_Controller
 
 		# Hacemos los llamados a los modelos necesarios
 		$this->load->model('ClientModel');
+		$this->load->model('TypeClientModel');
+		$this->load->model('TypeDocumentModel');
 		$this->load->model('StateModel');
 
 		# Validamos si existe una session
@@ -35,8 +37,10 @@ class Cliente extends CI_Controller
 	{
 		# Array con los datos a enviar a la vista
 		$data = array(
-			'title' => 'Clientes',
-			'subTitle' => 'Agregar',
+			'title' 			=> 'Clientes',
+			'subTitle' 			=> 'Agregar',
+			'type_clients' 		=> $this->TypeClientModel->getClients(),
+			'type_documents' 	=> $this->TypeDocumentModel->getDocuments(),
 		);
 
 		# Llamado a la clase template
@@ -48,21 +52,23 @@ class Cliente extends CI_Controller
 	{
 		# Recuperamos los datos de la vista que vienen por el method post
 		$name = $this->input->post('name');
-		$last_name = $this->input->post('last_name');
 		$phone = $this->input->post('phone');
 		$address = $this->input->post('address');
 		$ruc = $this->input->post('ruc');
-		$business = $this->input->post('business');
+		$type_document_id = $this->input->post('type_document_id');
+		$num_document= $this->input->post('num_document');
+		$type_client_id = $this->input->post('type_client_id');
 
 		# Array con los datos a enviar al modelo
 		$data = array(
 			'name' =>  $name,
-			'last_name' => $last_name,
 			'phone' => $phone,
 			'address' => $address,
 			'ruc' => $ruc,
-			'business' => $business,
-			'state_id' => '1'
+			'state_id' => '1',
+			'type_document_id' => $type_document_id,
+			'num_document' => $num_document,
+			'type_client_id' => $type_client_id,
 		);
 
 		# Validamos que el cliente halla sido registrado correctamente
@@ -85,6 +91,8 @@ class Cliente extends CI_Controller
 			'subTitle' => 'editar',
 			'client' => $this->ClientModel->getClientById($id),
 			'states' => $this->StateModel->getStates(),
+			'type_clients' 		=> $this->TypeClientModel->getClients(),
+			'type_documents' 	=> $this->TypeDocumentModel->getDocuments(),
 		);
 
 		# Llamado a la clase template
@@ -96,22 +104,24 @@ class Cliente extends CI_Controller
 	{
 		# Recuperamos los datos de la vista que vienen por el method post
 		$name = $this->input->post('name');
-		$last_name = $this->input->post('last_name');
 		$phone = $this->input->post('phone');
 		$address = $this->input->post('address');
 		$ruc = $this->input->post('ruc');
-		$business = $this->input->post('business');
 		$state_id = $this->input->post('state_id');
+		$type_document_id = $this->input->post('type_document_id');
+		$num_document = $this->input->post('num_document');
+		$type_client_id = $this->input->post('type_client_id');
 
 		# Array con los datos a enviar al modelo
 		$data = array(
-			'name' => $this->input->post('name'),
-			'last_name' => $this->input->post('last_name'),
-			'phone' => $this->input->post('phone'),
-			'address' => $this->input->post('address'),
-			'ruc' => $this->input->post('ruc'),
-			'business' => $this->input->post('business'),
-			'state_id' => $this->input->post('state_id'),
+			'name' 				=> $this->input->post('name'),
+			'phone' 			=> $this->input->post('phone'),
+			'address' 			=> $this->input->post('address'),
+			'ruc' 				=> $this->input->post('ruc'),
+			'state_id' 			=> $this->input->post('state_id'),
+			'type_document_id' 	=> $this->input->post('type_document_id'),
+			'num_document' 		=> $this->input->post('num_document'),
+			'type_client_id' 	=> $this->input->post('type_client_id'),
 		);
 
 		# Validamos que el cliente halla sido modificado correctamente
