@@ -46,7 +46,7 @@ class ProductModel extends CI_Model
         $this->db->join('states s', 'p.state_id = s.id');
 
         # Filtramos productos en el estado activo
-        $this->db->where('p.state_id', 1);
+        $this->db->where('p.id', $id);
 
         $product = $this->db->get();
         # Retornamos el cliente

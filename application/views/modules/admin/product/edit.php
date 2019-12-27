@@ -20,27 +20,57 @@
 
             <div class="form-group">
                 <label for="code">Codigo</label>
-                <input type="text" class="form-control" name="code" id="code" value="<?php echo $product->code?>">
+                <input type="text" class="form-control <?php echo !empty(form_error('code')) ? 'is-invalid' : ''; ?>" name="code" id="code" value="<?php echo $product->code?>">
+                <?php echo form_error(
+                    'code',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" class="form-control" name="name" id="name" value="<?php echo $product->name?>">
+                <input type="text" class="form-control <?php echo !empty(form_error('name')) ? 'is-invalid' : ''; ?>" name="name" id="name" value="<?php echo $product->name?>">
+                <?php echo form_error(
+                    'name',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Precio</label>
+                <input type="number" class="form-control <?php echo !empty(form_error('price')) ? 'is-invalid' : ''; ?>" name="price" id="price" value="<?php echo $product->price?>">
+                <?php echo form_error(
+                    'price',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="description">Descripcion</label>
-                <input type="text" class="form-control" name="description" id="description" value="<?php echo $product->description?>">
+                <input type="text" class="form-control <?php echo !empty(form_error('description')) ? 'is-invalid' : ''; ?>" name="description" id="description" value="<?php echo $product->description?>">
+                <?php echo form_error(
+                    'description',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="stock">Stock</label>
-                <input type="text" class="form-control" name="stock" id="stock" value="<?php echo $product->stock?>">
+                <input type="text" class="form-control <?php echo !empty(form_error('stock')) ? 'is-invalid' : ''; ?>" name="stock" id="stock" value="<?php echo $product->stock?>">
+                <?php echo form_error(
+                    'stock',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="category_id">Categoria</label>
-                <select name="category_id" class="form-control" id="category_id">
+                <select name="category_id" class="form-control <?php echo !empty(form_error('category_id')) ? 'is-invalid' : ''; ?>" id="category_id">
                     <option value="">Seleccione...</option>
                     <?php foreach ($categories as $category) : ?>
                         <option  value="<?php echo $category->id ?>" <?php if ($category->id == $product->category_id) {
@@ -50,11 +80,16 @@
                         </option>
                     <?php endforeach ?>
                 </select>
+                <?php echo form_error(
+                    'id_category',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
-                <label for="state_id">Categoria</label>
-                <select name="state_id" class="form-control" id="state_id">
+                <label for="state_id">Estado</label>
+                <select name="state_id" class="form-control <?php echo !empty(form_error('state_id')) ? 'is-invalid' : ''; ?>" id="state_id">
                     <option value="">Seleccione...</option>
                     <?php foreach ($states as $state) : ?>
                         <option value="<?php echo $state->id ?>" <?php if ($state->id == $product->state_id) {
@@ -64,6 +99,11 @@
                         </option>
                     <?php endforeach ?>
                 </select>
+                <?php echo form_error(
+                    'state_id',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">

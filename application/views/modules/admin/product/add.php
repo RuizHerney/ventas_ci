@@ -20,22 +20,52 @@
 
             <div class="form-group">
                 <label for="code">Codigo</label>
-                <input type="text" class="form-control" name="code" id="code">
+                <input type="text" class="form-control <?php echo !empty(form_error('code')) ? 'is-invalid' : ''; ?>" name="code" id="code" value="<?php echo set_value('code') ?>">
+                <?php echo form_error(
+                    'code',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" class="form-control" name="name" id="name">
+                <input type="text" class="form-control <?php echo !empty(form_error('name')) ? 'is-invalid' : ''; ?>" name="name" id="name" value="<?php echo set_value('name') ?>">
+                <?php echo form_error(
+                    'name',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="description">Descripcion</label>
-                <input type="text" class="form-control" name="description" id="description">
+                <input type="text" class="form-control <?php echo !empty(form_error('description')) ? 'is-invalid' : ''; ?>" name="description" id="description" value="<?php echo set_value('description') ?>">
+                <?php echo form_error(
+                    'description',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Precio</label>
+                <input type="number" class="form-control <?php echo !empty(form_error('price')) ? 'is-invalid' : ''; ?>" name="price" id="price" value="<?php echo set_value('price') ?>">
+                <?php echo form_error(
+                    'price',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="stock">Stock</label>
-                <input type="text" class="form-control" name="stock" id="stock">
+                <input type="text" class="form-control <?php echo !empty(form_error('stock')) ? 'is-invalid' : ''; ?>" name="stock" id="stock" value="<?php echo set_value('stock') ?>">
+                <?php echo form_error(
+                    'stock',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
@@ -48,10 +78,15 @@
                         </option>
                     <?php endforeach ?>
                 </select>
+                <?php echo form_error(
+                    'category_id',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
-                <label for="state_id">Categoria</label>
+                <label for="state_id">Estado</label>
                 <select name="state_id" class="form-control" id="state_id">
                     <option value="">Seleccione...</option>
                     <?php foreach ($states as $state) : ?>
@@ -60,6 +95,11 @@
                         </option>
                     <?php endforeach ?>
                 </select>
+                <?php echo form_error(
+                    'state_id',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">

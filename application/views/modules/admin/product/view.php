@@ -12,6 +12,12 @@
 
 <p>
     <strong>
+        Precio : <?php echo $product->price;?>
+    </strong>
+</p>
+
+<p>
+    <strong>
         Descripcion : <?php echo $product->description;?>
     </strong>
 </p>
