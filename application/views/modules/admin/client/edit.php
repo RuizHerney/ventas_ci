@@ -16,61 +16,102 @@
                 </p>
             </div>
         <?php endif ?>
-        
-        <form action="<?php echo base_url(); ?>matenimiento/cliente/update/<?php echo $client->id?>" method="POST">
+
+        <form action="<?php echo base_url(); ?>matenimiento/cliente/update/<?php echo $client->id ?>" method="POST">
 
             <div class="form-group">
                 <label for="name">Nombre</label>
                 <input type="text" class="form-control" name="name" id="name" value="<?php echo $client->name ?>">
+                <?php echo form_error(
+                    'name',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="phone">Telefono</label>
                 <input type="text" class="form-control" name="phone" id="phone" value="<?php echo $client->phone ?>">
+                <?php echo form_error(
+                    'phone',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="address">Direccion</label>
                 <input type="text" class="form-control" name="address" id="address" value="<?php echo $client->address ?>">
+                <?php echo form_error(
+                    'address',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="ruc">Ruc</label>
                 <input type="text" class="form-control" name="ruc" id="ruc" value="<?php echo $client->ruc ?>">
+                <?php echo form_error(
+                    'ruc',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="type_client_id">Tipo de cliente</label>
                 <select name="type_client_id" id="type_client_id" class="form-control">
                     <?php foreach ($type_clients as $type_client) : ?>
-                        <option <?php if ($type_client->id == $client->type_client_id) { echo 'selected'; }?> value="<?php echo $type_client->id ?>">
+                        <option <?php if ($type_client->id == $client->type_client_id) {
+                                    echo 'selected';
+                                } ?> value="<?php echo $type_client->id ?>">
                             <?php echo $type_client->name ?>
                         </option>
                     <?php endforeach ?>
                 </select>
+                <?php echo form_error(
+                    'type_client_id',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="type_document_id">Tipo documento</label>
                 <select name="type_document_id" id="type_document_id" class="form-control">
                     <?php foreach ($type_documents as $type_document) : ?>
-                        <option <?php if ($type_document->id == $client->type_document_id) { echo 'selected'; }?> value="<?php echo $type_document->id ?>">
+                        <option <?php if ($type_document->id == $client->type_document_id) {
+                                    echo 'selected';
+                                } ?> value="<?php echo $type_document->id ?>">
                             <?php echo $type_document->name ?>
                         </option>
                     <?php endforeach ?>
                 </select>
+                <?php echo form_error(
+                    'type_document_id',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
-            
+
             <div class="form-group">
                 <label for="num_document">Documento</label>
-                <input type="text" class="form-control" name="num_document" id="num_document" value="<?php echo $client->num_document?>">
+                <input type="text" class="form-control" name="num_document" id="num_document" value="<?php echo $client->num_document ?>">
+                <?php echo form_error(
+                    'num_document',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
-            
+
             <div class="form-group">
                 <label for="">Estado</label>
                 <select name="state_id" id="state" class="form-control">
                     <?php foreach ($states as $state) : ?>
-                        <option <?php if ($state->id == $client->state_id) { echo 'selected'; }?> value="<?php echo $state->id ?>">
+                        <option <?php if ($state->id == $client->state_id) {
+                                    echo 'selected';
+                                } ?> value="<?php echo $state->id ?>">
                             <?php echo $state->name ?>
                         </option>
                     <?php endforeach ?>

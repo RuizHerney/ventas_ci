@@ -56,30 +56,79 @@ class Cliente extends CI_Controller
 		$address = $this->input->post('address');
 		$ruc = $this->input->post('ruc');
 		$type_document_id = $this->input->post('type_document_id');
-		$num_document= $this->input->post('num_document');
+		$num_document = $this->input->post('num_document');
 		$type_client_id = $this->input->post('type_client_id');
 
-		# Array con los datos a enviar al modelo
-		$data = array(
-			'name' =>  $name,
-			'phone' => $phone,
-			'address' => $address,
-			'ruc' => $ruc,
-			'state_id' => '1',
-			'type_document_id' => $type_document_id,
-			'num_document' => $num_document,
-			'type_client_id' => $type_client_id,
+		# Validacion de formularios
+		$this->form_validation->set_rules(
+			'name',
+			'Nombre',
+			'required|is_unique[clients.name]'
 		);
 
-		# Validamos que el cliente halla sido registrado correctamente
-		if ($this->ClientModel->saveClient($data)) {
+		$this->form_validation->set_rules(
+			'phone',
+			'Telefono',
+			'required'
+		);
 
-			# Lo enviamos a la vista list 
-			redirect(base_url() . 'matenimiento/cliente');
+		$this->form_validation->set_rules(
+			'address',
+			'Direccion',
+			'required'
+		);
+
+		$this->form_validation->set_rules(
+			'ruc',
+			'RUC',
+			'required'
+		);
+
+		$this->form_validation->set_rules(
+			'type_client_id',
+			'Tipo Cliente',
+			'required'
+		);
+
+		$this->form_validation->set_rules(
+			'type_document_id',
+			'Tipo de documento',
+			'required'
+		);
+
+		$this->form_validation->set_rules(
+			'num_document',
+			'Documento',
+			'required'
+		);
+
+
+		if ($this->form_validation->run()) {
+
+			# Array con los datos a enviar al modelo
+			$data = array(
+				'name' =>  $name,
+				'phone' => $phone,
+				'address' => $address,
+				'ruc' => $ruc,
+				'state_id' => '1',
+				'type_document_id' => $type_document_id,
+				'num_document' => $num_document,
+				'type_client_id' => $type_client_id,
+			);
+
+			# Validamos que el cliente halla sido registrado correctamente
+			if ($this->ClientModel->saveClient($data)) {
+
+				# Lo enviamos a la vista list 
+				redirect(base_url() . 'matenimiento/cliente');
+			} else {
+				# Lo enviamos a la vista add con sus errores 
+				$this->session->set_flashdata('error', 'No se pudo guradar la informacion');
+				redirect(base_url() . 'cliente/add');
+			}
 		} else {
-			# Lo enviamos a la vista add con sus errores 
-			$this->session->set_flashdata('error', 'No se pudo guradar la informacion');
-			redirect(base_url() . 'cliente/add');
+			$this->add();
 		}
 	} # End method create
 
@@ -103,35 +152,107 @@ class Cliente extends CI_Controller
 	public function update($id)
 	{
 		# Recuperamos los datos de la vista que vienen por el method post
-		$name = $this->input->post('name');
+		/* 		$name = $this->input->post('name');
 		$phone = $this->input->post('phone');
 		$address = $this->input->post('address');
 		$ruc = $this->input->post('ruc');
 		$state_id = $this->input->post('state_id');
 		$type_document_id = $this->input->post('type_document_id');
 		$num_document = $this->input->post('num_document');
-		$type_client_id = $this->input->post('type_client_id');
+		$type_client_id = $this->input->post('type_client_id'); */
 
-		# Array con los datos a enviar al modelo
-		$data = array(
-			'name' 				=> $this->input->post('name'),
-			'phone' 			=> $this->input->post('phone'),
-			'address' 			=> $this->input->post('address'),
-			'ruc' 				=> $this->input->post('ruc'),
-			'state_id' 			=> $this->input->post('state_id'),
-			'type_document_id' 	=> $this->input->post('type_document_id'),
-			'num_document' 		=> $this->input->post('num_document'),
-			'type_client_id' 	=> $this->input->post('type_client_id'),
+		$name = $this->input->post('name');
+		$num_document = $this->input->post('num_document');
+		$ruc = $this->input->post('ruc');
+
+		$client = $this->ClientModel->getClientById($id);
+
+		if ($name == $client->name) {
+			$is_unique_name = '';
+		}else{
+			$is_unique_name = '|is_unique[clients.name]';
+		}
+
+		if ($ruc == $client->ruc) {
+			$is_unique_ruc = '';
+		}else{
+			$is_unique_ruc = '|is_unique[clients.ruc]';
+		}
+
+		if ($num_document == $client->num_document) {
+			$is_unique_cum_document = '';
+		}else{
+			$is_unique_cum_document = '|is_unique[clients.num_document]';
+		}
+
+		# Validacion de formularios
+		$this->form_validation->set_rules(
+			'name',
+			'Nombre',
+			'required' . $is_unique_name
 		);
 
-		# Validamos que el cliente halla sido modificado correctamente
-		if ($this->ClientModel->updateClient($id, $data)) {
-			# Lo enviamos a la vista list 
-			redirect(base_url() . 'matenimiento/cliente');
-		} else {
-			# Lo enviamos a la vista update con sus errores 
-			$this->session->set_flashdata('error', 'No se pudo editar la informacion');
-			redirect(base_url() . 'cliente/edit');
+		$this->form_validation->set_rules(
+			'phone',
+			'Telefono',
+			'required'
+		);
+
+		$this->form_validation->set_rules(
+			'address',
+			'Direccion',
+			'required'
+		);
+
+		$this->form_validation->set_rules(
+			'ruc',
+			'RUC',
+			'required' .$is_unique_ruc
+		);
+
+		$this->form_validation->set_rules(
+			'type_client_id',
+			'Tipo Cliente',
+			'required'
+		);
+
+		$this->form_validation->set_rules(
+			'type_document_id',
+			'Tipo de documento',
+			'required'
+		);
+
+		$this->form_validation->set_rules(
+			'num_document',
+			'Documento',
+			'required' . $is_unique_cum_document
+		);
+
+		if ($this->form_validation->run()) {
+
+			# Array con los datos a enviar al modelo
+			$data = array(
+				'name' 				=> $this->input->post('name'),
+				'phone' 			=> $this->input->post('phone'),
+				'address' 			=> $this->input->post('address'),
+				'ruc' 				=> $this->input->post('ruc'),
+				'state_id' 			=> $this->input->post('state_id'),
+				'type_document_id' 	=> $this->input->post('type_document_id'),
+				'num_document' 		=> $this->input->post('num_document'),
+				'type_client_id' 	=> $this->input->post('type_client_id'),
+			);
+
+			# Validamos que el cliente halla sido modificado correctamente
+			if ($this->ClientModel->updateClient($id, $data)) {
+				# Lo enviamos a la vista list 
+				redirect(base_url() . 'matenimiento/cliente');
+			} else {
+				# Lo enviamos a la vista update con sus errores 
+				$this->session->set_flashdata('error', 'No se pudo editar la informacion');
+				redirect(base_url() . 'cliente/edit');
+			}
+		}else{
+			$this->edit($id);
 		}
 	} # End method udpate
 

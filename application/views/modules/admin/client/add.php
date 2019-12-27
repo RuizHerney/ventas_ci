@@ -20,51 +20,86 @@
 
             <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" class="form-control" name="name" id="name">
+                <input type="text" class="form-control <?php echo !empty(form_error('name')) ? 'is-invalid' : ''; ?>" name="name" id="name">
+                <?php echo form_error(
+                    'name',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="phone">Telefono</label>
-                <input type="text" class="form-control" name="phone" id="phone">
+                <input type="text" class="form-control <?php echo !empty(form_error('phone')) ? 'is-invalid' : ''; ?>" name="phone" id="phone">
+                <?php echo form_error(
+                    'phone',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="address">Direccion</label>
-                <input type="text" class="form-control" name="address" id="address">
+                <input type="text" class="form-control <?php echo !empty(form_error('address')) ? 'is-invalid' : ''; ?>" name="address" id="address">
+                <?php echo form_error(
+                    'address',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="ruc">Ruc</label>
-                <input type="text" class="form-control" name="ruc" id="ruc">
+                <input type="text" class="form-control <?php echo !empty(form_error('ruc')) ? 'is-invalid' : ''; ?>" name="ruc" id="ruc">
+                <?php echo form_error(
+                    'ruc',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="type_client_id">Tipo de usuario</label>
-                <select class="form-control" name="type_client_id" id="type_client_id">
-                    <option value="">Seleccione...</option>
+                <select class="form-control <?php echo !empty(form_error('type_client_id')) ? 'is-invalid' : ''; ?>" name="type_client_id" id="type_client_id">
+                    <option value="0">Seleccione...</option>
                     <?php foreach ($type_clients as $type_client) : ?>
                         <option value="<?php echo $type_client->id ?>">
                             <?php echo $type_client->name ?>
                         </option>
                     <?php endforeach ?>
                 </select>
+                <?php echo form_error(
+                    'type_client_id',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
             <div class="form-group">
                 <label for="type_document_id">Tipo de documento</label>
-                <select class="form-control" name="type_document_id" id="type_document_id">
-                    <option value="">Seleccione...</option>
+                <select class="form-control <?php echo !empty(form_error('type_document_id')) ? 'is-invalid' : ''; ?>" name="type_document_id" id="type_document_id">
+                    <option value="0">Seleccione...</option>
                     <?php foreach ($type_documents as $type_document) : ?>
                         <option value="<?php echo $type_document->id ?>">
-                            <?php echo $type_document->name?>
+                            <?php echo $type_document->name ?>
                         </option>
                     <?php endforeach ?>
                 </select>
+                <?php echo form_error(
+                    'type_document_id',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
-            
+
             <div class="form-group">
                 <label for="num_document">Documento</label>
-                <input type="text" class="form-control" name="num_document" id="num_document">
+                <input type="text" class="form-control <?php echo !empty(form_error('num_document')) ? 'is-invalid' : ''; ?>" name="num_document" id="num_document">
+                <?php echo form_error(
+                    'num_document',
+                    '<span class="help-block text-danger">',
+                    '</span>'
+                ) ?>
             </div>
 
 
