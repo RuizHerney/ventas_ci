@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
             <h3 class="card-title"><?php echo $title ?></h3>
-            <a href="<?php base_url(); ?>categoria/add" class="btn btn-primary">
+            <a href="<?php echo base_url(); ?>matenimiento/categoria/add" class="btn btn-primary">
                 <i class="far fa-plus"></i>
             </a>
         </div>
@@ -29,7 +29,7 @@
                                 <button class="btn btn-info m-1 btn-view-category" data-toggle="modal" data-target="#modal-default" value="<?php echo $Category->id?>">
                                     <i class="far fa-search nav-icon"></i>
                                 </button>
-                                <a href="<?php base_url(); ?>categoria/edit/<?php echo $Category->id ?>" class="btn btn-primary m-1">
+                                <a href="<?php echo base_url(); ?>matenimiento/categoria/edit/<?php echo $Category->id ?>" class="btn btn-primary m-1">
                                     <i class="far fa-edit nav-icon"></i>
                                 </a>
                                 <a href="<?php echo base_url() ?>matenimiento/categoria/delete/<?php echo $Category->id?>" class="btn btn-danger m-1">
