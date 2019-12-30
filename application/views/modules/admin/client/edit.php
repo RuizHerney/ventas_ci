@@ -21,7 +21,7 @@
 
             <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" class="form-control" name="name" id="name" value="<?php echo $client->name ?>">
+                <input type="text" class="form-control <?php echo !empty(form_error('name')) ? 'is-invalid' : ''; ?>" name="name" id="name" value="<?php echo $client->name ?>">
                 <?php echo form_error(
                     'name',
                     '<span class="help-block text-danger">',
@@ -31,7 +31,7 @@
 
             <div class="form-group">
                 <label for="phone">Telefono</label>
-                <input type="text" class="form-control" name="phone" id="phone" value="<?php echo $client->phone ?>">
+                <input type="text" class="form-control <?php echo !empty(form_error('phone')) ? 'is-invalid' : ''; ?>" name="phone" id="phone" value="<?php echo $client->phone ?>">
                 <?php echo form_error(
                     'phone',
                     '<span class="help-block text-danger">',
@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <label for="address">Direccion</label>
-                <input type="text" class="form-control" name="address" id="address" value="<?php echo $client->address ?>">
+                <input type="text" class="form-control <?php echo !empty(form_error('address')) ? 'is-invalid' : ''; ?>" name="address" id="address" value="<?php echo $client->address ?>">
                 <?php echo form_error(
                     'address',
                     '<span class="help-block text-danger">',
@@ -51,7 +51,7 @@
 
             <div class="form-group">
                 <label for="ruc">Ruc</label>
-                <input type="text" class="form-control" name="ruc" id="ruc" value="<?php echo $client->ruc ?>">
+                <input type="text" class="form-control <?php echo !empty(form_error('ruc')) ? 'is-invalid' : ''; ?>" name="ruc" id="ruc" value="<?php echo $client->ruc ?>">
                 <?php echo form_error(
                     'ruc',
                     '<span class="help-block text-danger">',
@@ -61,7 +61,7 @@
 
             <div class="form-group">
                 <label for="type_client_id">Tipo de cliente</label>
-                <select name="type_client_id" id="type_client_id" class="form-control">
+                <select name="type_client_id" id="type_client_id" class="form-control <?php echo !empty(form_error('type_client_id')) ? 'is-invalid' : ''; ?>">
                     <?php foreach ($type_clients as $type_client) : ?>
                         <option <?php if ($type_client->id == $client->type_client_id) {
                                     echo 'selected';
@@ -79,7 +79,7 @@
 
             <div class="form-group">
                 <label for="type_document_id">Tipo documento</label>
-                <select name="type_document_id" id="type_document_id" class="form-control">
+                <select name="type_document_id" id="type_document_id" class="form-control <?php echo !empty(form_error('type_document_id')) ? 'is-invalid' : ''; ?>">
                     <?php foreach ($type_documents as $type_document) : ?>
                         <option <?php if ($type_document->id == $client->type_document_id) {
                                     echo 'selected';
@@ -97,7 +97,7 @@
 
             <div class="form-group">
                 <label for="num_document">Documento</label>
-                <input type="text" class="form-control" name="num_document" id="num_document" value="<?php echo $client->num_document ?>">
+                <input type="text" class="form-control <?php echo !empty(form_error('num_document')) ? 'is-invalid' : ''; ?>" name="num_document" id="num_document" value="<?php echo $client->num_document ?>">
                 <?php echo form_error(
                     'num_document',
                     '<span class="help-block text-danger">',
@@ -107,7 +107,7 @@
 
             <div class="form-group">
                 <label for="">Estado</label>
-                <select name="state_id" id="state" class="form-control">
+                <select name="state_id" id="state" class="form-control <?php echo !empty(form_error('state_id')) ? 'is-invalid' : ''; ?>">
                     <?php foreach ($states as $state) : ?>
                         <option <?php if ($state->id == $client->state_id) {
                                     echo 'selected';
