@@ -30,7 +30,7 @@
 
             <div class="form-group">
                 <label for="description">Descripcion</label>
-                <input type="text" class="form-control  <?php echo !empty(form_error('description'))? 'is-invalid' : ''; ?>" name="name" id="name" value="<?php echo set_value('name'); ?>" name="description" id="description">
+                <input type="text" class="form-control  <?php echo !empty(form_error('description'))? 'is-invalid' : ''; ?>" name="description" id="description" value="<?php echo set_value('description'); ?>" name="description" id="description">
                 <?php echo form_error(
                     'description',
                     '<span class="help-block text-danger">',

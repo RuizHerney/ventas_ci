@@ -19,6 +19,7 @@
                     <th>RUC</th>
                     <th>T. cliente</th>
                     <th>T. documento</th>
+                    <th>N. documento</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -32,6 +33,7 @@
                         <td><?php echo $client->ruc ?></td>
                         <td><?php echo $client->typeClient ?></td>
                         <td><?php echo $client->typeDocument ?></td>
+                        <td><?php echo $client->num_document ?></td>
                         <td>
                             <div class="btn-group">
                                 <button class="btn btn-info m-1 btn-view-client" data-toggle="modal" data-target="#modal-default" value="<?php echo $client->id ?>">
@@ -52,11 +54,12 @@
                 <tr>
                     <th>#</th>
                     <th>Nombre</th>
-                    <th>Apellidos</th>
                     <th>Telefono</th>
                     <th>Direccion</th>
                     <th>RUC</th>
-                    <th>Empresa</th>
+                    <th>T. cliente</th>
+                    <th>T. documento</th>
+                    <th>N. documento</th>
                     <th>Acciones</th>
                 </tr>
             </tfoot>
