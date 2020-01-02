@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 31-12-2019 a las 03:27:21
--- Versión del servidor: 10.4.10-MariaDB
--- Versión de PHP: 7.3.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 02-01-2020 a las 14:26:04
+-- Versión del servidor: 10.1.31-MariaDB
+-- Versión de PHP: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ventas_ci`
 --
+CREATE DATABASE IF NOT EXISTS `ventas_ci` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `ventas_ci`;
 
 -- --------------------------------------------------------
 
@@ -47,7 +49,8 @@ CREATE TABLE `clients` (
   `phone` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `address` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `type_client_id` int(11) NOT NULL,
-  `type_document` int(11) NOT NULL,
+  `type_document_id` int(11) NOT NULL,
+  `ruc` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `num_document` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `state_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -75,9 +78,9 @@ CREATE TABLE `details_sales` (
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
-  `code` int(11) NOT NULL,
-  `name` int(150) NOT NULL,
-  `description` int(150) NOT NULL,
+  `code` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
+  `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
+  `description` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `price` int(11) NOT NULL,
   `stock` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -131,6 +134,30 @@ CREATE TABLE `states` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `types_clients`
+--
+
+CREATE TABLE `types_clients` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
+  `description` varchar(150) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `types_documents`
+--
+
+CREATE TABLE `types_documents` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
+  `description` varchar(150) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `types_voucher`
 --
 
@@ -140,30 +167,6 @@ CREATE TABLE `types_voucher` (
   `quantity` int(150) NOT NULL,
   `igv` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `serie` varchar(150) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `type_client`
---
-
-CREATE TABLE `type_client` (
-  `id` int(11) NOT NULL,
-  `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
-  `description` varchar(150) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `type_document`
---
-
-CREATE TABLE `type_document` (
-  `id` int(11) NOT NULL,
-  `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
-  `description` varchar(150) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -202,8 +205,9 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `clients`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ruc` (`ruc`),
   ADD KEY `type_client_id` (`type_client_id`),
-  ADD KEY `type_document` (`type_document`);
+  ADD KEY `type_document` (`type_document_id`);
 
 --
 -- Indices de la tabla `details_sales`
@@ -248,24 +252,24 @@ ALTER TABLE `states`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indices de la tabla `types_clients`
+--
+ALTER TABLE `types_clients`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indices de la tabla `types_documents`
+--
+ALTER TABLE `types_documents`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indices de la tabla `types_voucher`
 --
 ALTER TABLE `types_voucher`
   ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `type_client`
---
-ALTER TABLE `type_client`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
-
---
--- Indices de la tabla `type_document`
---
-ALTER TABLE `type_document`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indices de la tabla `users`
@@ -324,21 +328,21 @@ ALTER TABLE `states`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `types_clients`
+--
+ALTER TABLE `types_clients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `types_documents`
+--
+ALTER TABLE `types_documents`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `types_voucher`
 --
 ALTER TABLE `types_voucher`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `type_client`
---
-ALTER TABLE `type_client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `type_document`
---
-ALTER TABLE `type_document`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -361,8 +365,8 @@ ALTER TABLE `categories`
 -- Filtros para la tabla `clients`
 --
 ALTER TABLE `clients`
-  ADD CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`type_client_id`) REFERENCES `type_client` (`id`),
-  ADD CONSTRAINT `clients_ibfk_2` FOREIGN KEY (`type_document`) REFERENCES `type_document` (`id`);
+  ADD CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`type_client_id`) REFERENCES `types_clients` (`id`),
+  ADD CONSTRAINT `clients_ibfk_2` FOREIGN KEY (`type_document_id`) REFERENCES `types_documents` (`id`);
 
 --
 -- Filtros para la tabla `details_sales`
