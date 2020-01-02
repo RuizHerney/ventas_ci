@@ -1,5 +1,6 @@
   <!-- jQuery -->
   <script src="<?php echo base_url() ?>/public/assets/js/jquery.min.js"></script>
+  <script src="<?php echo base_url() ?>/public/assets/js/jquery-ui.js"></script>
   <!-- Bootstrap 4 -->
   <script src="<?php echo base_url() ?>/public/assets/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
@@ -89,6 +90,39 @@
           $('#serie').val(null);
           $('#num').val(null);
         }
+      })
+
+      $(document).on('click', '.btn-check', function(){
+        client = $(this).val();
+
+        infoclient = client.split('*');
+
+        $('#idclient').val(infoclient[0]);
+        $('#client').val(infoclient[1]);
+
+        $('#modal-default').modal('hide');
+      })
+
+      $('#product').autocomplete({
+
+        source:function (req, res) {
+
+          $.ajax({
+            url:   base_url + 'matenimiento/producto/getProduct',
+            type: 'POST',
+            dataType: 'json',
+            data:{ value: req.term},
+            success:function(data){
+                res(data)
+            }
+          });
+
+         },
+        minLength: 2,
+        select: function(event, ui) {
+          data = ui.item.id +  '*' + ui.item.code +  '*' + ui.item.label +  '*' + ui.item.price +  '*' + ui.item.stock;
+          $('#btn-add').val(data);
+        },
       })
     });
 

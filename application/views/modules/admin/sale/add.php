@@ -38,8 +38,8 @@
                         <div class="col-md-6">
                             <label for="">Cliente:</label>
                             <div class="input-group">
-                                <input type="hidden" name="idcliente" id="idcliente">
-                                <input type="text" class="form-control" disabled="disabled" id="cliente">
+                                <input type="hidden" name="idclient" id="idclient">
+                                <input type="text" class="form-control" disabled="disabled" id="client">
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span> Buscar</button>
                                 </span>
@@ -54,11 +54,14 @@
                     <div class="row form-group">
                         <div class="col-md-6">
                             <label for="">Producto:</label>
-                            <input type="text" class="form-control" id="producto">
+                            <input type="text" class="form-control" id="product">
                         </div>
                         <div class="col-md-2">
                             <label for="">&nbsp;</label>
-                            <button id="btn-agregar" type="button" class="btn btn-success btn-flat btn-block"><span class="fa fa-plus"></span> Agregar</button>
+                            <button id="btn-add" type="button" class="btn btn-success btn-flat btn-block">
+                                <span class="fa fa-plus"></span>
+                                Agregar
+                            </button>
                         </div>
                     </div>
 
@@ -138,6 +141,7 @@
                             <th>#</th>
                             <th>Nombre</th>
                             <th>N. documento</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -146,6 +150,12 @@
                                 <td><?php echo $client->id ?></td>
                                 <td><?php echo $client->name ?></td>
                                 <td><?php echo $client->num_document ?></td>
+                                <?php $dataclient = $client->id . '*' . $client->name . '*' . $client->type_client_id . '*' . $client->type_document_id . '*' . $client->phone . '*' . $client->address ?>
+                                <td>
+                                    <button class="btn btn-success btn-check" value="<?php echo $dataclient ?>">
+                                        <span class="fa fa-check"></span>
+                                    </button>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
@@ -154,6 +164,7 @@
                             <th>#</th>
                             <th>Nombre</th>
                             <th>N. documento</th>
+                            <th>Acciones</th>
                         </tr>
                     </tfoot>
                 </table>

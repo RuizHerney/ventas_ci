@@ -6,6 +6,7 @@
 
 <!-- Font Awesome Icons -->
 <link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/all.min.css">
+<link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/jquery-ui.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/adminlte.min.css">
 

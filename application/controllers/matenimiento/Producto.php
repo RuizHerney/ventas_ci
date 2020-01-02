@@ -32,6 +32,16 @@ class Producto extends CI_Controller
         $this->template->load('admin', 'product/list', $data);
     } # End method index
 
+
+    public function getProduct()
+    {
+        $value = $this->input->post('value');
+
+        $client = $this->ProductModel->getProductByLike($value);
+
+        echo json_encode($client, JSON_UNESCAPED_UNICODE);
+    } # End method getProducts
+
     public function add()
     {
         # Array con los datos a enviar a la vistas

@@ -25,6 +25,19 @@ class ProductModel extends CI_Model
         return $products->result();
     } # End method getProducts
 
+    public function getProductByLike($value)
+    {
+        $this->db->select('id, code, name as label, price, stock');
+
+        $this->db->from('Products');
+
+        $this->db->like('name', $value);
+
+        $products = $this->db->get();
+
+        return $products->result_array();
+    } # End method getProductByLike
+
     public function saveProduct($data)
     {
         return $this->db->insert('products', $data);
