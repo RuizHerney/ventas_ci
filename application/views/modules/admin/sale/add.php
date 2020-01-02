@@ -7,22 +7,29 @@
                     <div class="row form-group">
                         <div class="col-md-3">
                             <label for="">Comprobante:</label>
-                            <select name="comprobantes" id="comprobantes" class="form-control" required>
+                            <select name="voucher" id="voucher" class="form-control" required>
                                 <option value="">Seleccione...</option>
-                                <option value="1">Boleta</option>
-                                <option value="2">Factura</option>
+                                <?php foreach ($vouchers as $voucher) : ?>
+
+                                    <?php
+                                    $dataVoucher = $voucher->id . '*' . $voucher->quantity . '*' . $voucher->igv . '*' . $voucher->serie;
+                                    ?>
+                                    <option value="<?php echo $dataVoucher ?>">
+                                        <?php echo $voucher->name ?>
+                                    </option>
+                                <?php endforeach ?>
                             </select>
-                            <input type="hidden" id="idcomprobante" name="idcomprobante">
+                            <input type="hidden" id="idvoucher" name="idvoucher">
                             <input type="hidden" id="igv">
                         </div>
                         <div class="col-md-3">
                             <label for="">Serie:</label>
-                            <input type="text" class="form-control" name="serie" readonly>
+                            <input type="text" class="form-control" name="serie" id="serie" readonly>
                         </div>
 
                         <div class="col-md-3">
                             <label for="">Numero:</label>
-                            <input type="text" class="form-control" id="numero" name="numero" readonly>
+                            <input type="text" class="form-control" id="num" name="num"readonly>
                         </div>
 
                     </div>
@@ -95,7 +102,7 @@
                                 <input type="text" class="form-control" placeholder="Username" name="descuento" value="0.00" readonly="readonly">
                             </div>
                         </div>
-                        
+
                         <div class="col-md-3">
                             <div class="input-group d-flex align-items-center">
                                 <span class="input-group-addon">Total:</span>

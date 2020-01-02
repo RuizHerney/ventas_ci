@@ -12,44 +12,44 @@
   <script>
     $(function() {
 
-      var base_url = '<?php echo base_url();?>';
+      var base_url = '<?php echo base_url(); ?>';
 
-      $('.btn-view-category').on('click', function(){
+      $('.btn-view-category').on('click', function() {
         var id = $(this).val();
 
         $.ajax({
 
-            url: base_url + 'matenimiento/categoria/view/' + id,
-            type: 'POST',
-            success:function(res){
-              $('#modal-default .modal-body').html(res);
-            }
+          url: base_url + 'matenimiento/categoria/view/' + id,
+          type: 'POST',
+          success: function(res) {
+            $('#modal-default .modal-body').html(res);
+          }
         })
       })
 
-      $('.btn-view-client').on('click', function(){
+      $('.btn-view-client').on('click', function() {
         var id = $(this).val();
 
         $.ajax({
 
-            url: base_url + 'matenimiento/cliente/view/' + id,
-            type: 'POST',
-            success:function(res){
-              $('#modal-default .modal-body').html(res);
-            }
+          url: base_url + 'matenimiento/cliente/view/' + id,
+          type: 'POST',
+          success: function(res) {
+            $('#modal-default .modal-body').html(res);
+          }
         })
       })
 
-      $('.btn-view-product').on('click', function(){
+      $('.btn-view-product').on('click', function() {
         var id = $(this).val();
 
         $.ajax({
 
-            url: base_url + 'matenimiento/producto/view/' + id,
-            type: 'POST',
-            success:function(res){
-              $('#modal-default .modal-body').html(res);
-            }
+          url: base_url + 'matenimiento/producto/view/' + id,
+          type: 'POST',
+          success: function(res) {
+            $('#modal-default .modal-body').html(res);
+          }
         })
       })
 
@@ -70,5 +70,52 @@
           },
         }
       });
+
+      $('#voucher').on('change', function() {
+        option = $(this).val();
+
+        if (option != "") {
+
+          infoVoucher = option.split('*');
+
+          $('#idvoucher').val(infoVoucher[0]);
+          $('#igv').val(infoVoucher[2]);
+          $('#serie').val(infoVoucher[3]);
+          $('#num').val(genereNum(infoVoucher[1]));
+        } else {
+
+          $('#idvoucher').val(null);
+          $('#igv').val(null);
+          $('#serie').val(null);
+          $('#num').val(null);
+        }
+      })
     });
+
+    function genereNum(num) {
+
+      if (num >= 99999 && num < 999999) {
+        return Number(num) + 1;
+      }
+
+      if (num >= 9999 && num < 99999) {
+        return '0' + (Number(num) + 1);
+      }
+
+      if (num >= 999 && num < 9999) {
+        return '00' + (Number(num) + 1);
+      }
+
+      if (num >= 99 && num < 999) {
+        return '000' + (Number(num) + 1);
+      }
+
+      if (num >= 9 && num < 99) {
+        return '0000' + (Number(num) + 1);
+      }
+
+      if (num < 9) {
+        return '00000' + (Number(num) + 1);
+      }
+    }
   </script>

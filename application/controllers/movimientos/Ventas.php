@@ -9,7 +9,12 @@ class Ventas extends CI_Controller
         parent::__construct();
 
         $this->load->model('SaleModel');
-        $this->load->model('SaleModel');
+        $this->load->model('TypeVoucherModel');
+
+        # Validamos si existe una session
+        if (!$this->session->userdata('login')) {
+            redirect(base_url());
+        }
     } # End method construct
 
     public function index()
@@ -28,8 +33,9 @@ class Ventas extends CI_Controller
     {
         # Array con los datos a enviar a la vista
         $data = array(
-            'title' => 'Ventas',
-            'Subtitle' => 'Agregar'
+            'title'             => 'Ventas',
+            'Subtitle'          => 'Agregar',
+            'vouchers'          => $this->TypeVoucherModel->getVouhers(),
         );
 
         # Llamado a la clase template

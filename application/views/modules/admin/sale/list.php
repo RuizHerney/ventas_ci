@@ -9,7 +9,7 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-        <h1><?php echo base_url();?>movimientos/ventas</h1>
+        
     </div>
 
     <div class="modal fade" id="modal-default">
