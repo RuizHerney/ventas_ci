@@ -50,16 +50,6 @@
             </div>
 
             <div class="form-group">
-                <label for="ruc">Ruc</label>
-                <input type="text" class="form-control <?php echo !empty(form_error('ruc')) ? 'is-invalid' : ''; ?>" name="ruc" id="ruc" value="<?php echo $client->ruc ?>">
-                <?php echo form_error(
-                    'ruc',
-                    '<span class="help-block text-danger">',
-                    '</span>'
-                ) ?>
-            </div>
-
-            <div class="form-group">
                 <label for="type_client_id">Tipo de cliente</label>
                 <select name="type_client_id" id="type_client_id" class="form-control <?php echo !empty(form_error('type_client_id')) ? 'is-invalid' : ''; ?>">
                     <?php foreach ($type_clients as $type_client) : ?>

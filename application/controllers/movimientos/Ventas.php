@@ -10,6 +10,7 @@ class Ventas extends CI_Controller
 
         $this->load->model('SaleModel');
         $this->load->model('TypeVoucherModel');
+        $this->load->model('ClientModel');
 
         # Validamos si existe una session
         if (!$this->session->userdata('login')) {
@@ -36,6 +37,7 @@ class Ventas extends CI_Controller
             'title'             => 'Ventas',
             'Subtitle'          => 'Agregar',
             'vouchers'          => $this->TypeVoucherModel->getVouhers(),
+            'clients'           => $this->ClientModel->getClients(),
         );
 
         # Llamado a la clase template

@@ -50,7 +50,6 @@ CREATE TABLE `clients` (
   `address` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `type_client_id` int(11) NOT NULL,
   `type_document_id` int(11) NOT NULL,
-  `ruc` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `num_document` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `state_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -205,7 +204,7 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `clients`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `ruc` (`ruc`),
+  ADD UNIQUE KEY `num_document` (`num_document`),
   ADD KEY `type_client_id` (`type_client_id`),
   ADD KEY `type_document` (`type_document_id`);
 

@@ -54,7 +54,6 @@ class Cliente extends CI_Controller
 		$name = $this->input->post('name');
 		$phone = $this->input->post('phone');
 		$address = $this->input->post('address');
-		$ruc = $this->input->post('ruc');
 		$type_document_id = $this->input->post('type_document_id');
 		$num_document = $this->input->post('num_document');
 		$type_client_id = $this->input->post('type_client_id');
@@ -75,12 +74,6 @@ class Cliente extends CI_Controller
 		$this->form_validation->set_rules(
 			'address',
 			'Direccion',
-			'required'
-		);
-
-		$this->form_validation->set_rules(
-			'ruc',
-			'RUC',
 			'required'
 		);
 
@@ -110,7 +103,6 @@ class Cliente extends CI_Controller
 				'name' =>  $name,
 				'phone' => $phone,
 				'address' => $address,
-				'ruc' => $ruc,
 				'state_id' => '1',
 				'type_document_id' => $type_document_id,
 				'num_document' => $num_document,
@@ -120,10 +112,10 @@ class Cliente extends CI_Controller
 			# Validamos que el cliente halla sido registrado correctamente
 			if ($this->ClientModel->saveClient($data)) {
 
-				# Lo enviamos a la vista list 
+				# Lo enviamos a la vista list
 				redirect(base_url() . 'matenimiento/cliente');
 			} else {
-				# Lo enviamos a la vista add con sus errores 
+				# Lo enviamos a la vista add con sus errores
 				$this->session->set_flashdata('error', 'No se pudo guradar la informacion');
 				redirect(base_url() . 'cliente/add');
 			}
@@ -163,7 +155,6 @@ class Cliente extends CI_Controller
 
 		$name = $this->input->post('name');
 		$num_document = $this->input->post('num_document');
-		$ruc = $this->input->post('ruc');
 
 		$client = $this->ClientModel->getClientById($id);
 
@@ -171,12 +162,6 @@ class Cliente extends CI_Controller
 			$is_unique_name = '';
 		}else{
 			$is_unique_name = '|is_unique[clients.name]';
-		}
-
-		if ($ruc == $client->ruc) {
-			$is_unique_ruc = '';
-		}else{
-			$is_unique_ruc = '|is_unique[clients.ruc]';
 		}
 
 		if ($num_document == $client->num_document) {
@@ -205,12 +190,6 @@ class Cliente extends CI_Controller
 		);
 
 		$this->form_validation->set_rules(
-			'ruc',
-			'RUC',
-			'required' .$is_unique_ruc
-		);
-
-		$this->form_validation->set_rules(
 			'type_client_id',
 			'Tipo Cliente',
 			'required'
@@ -235,7 +214,6 @@ class Cliente extends CI_Controller
 				'name' 				=> $this->input->post('name'),
 				'phone' 			=> $this->input->post('phone'),
 				'address' 			=> $this->input->post('address'),
-				'ruc' 				=> $this->input->post('ruc'),
 				'state_id' 			=> $this->input->post('state_id'),
 				'type_document_id' 	=> $this->input->post('type_document_id'),
 				'num_document' 		=> $this->input->post('num_document'),

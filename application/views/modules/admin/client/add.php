@@ -49,16 +49,6 @@
             </div>
 
             <div class="form-group">
-                <label for="ruc">Ruc</label>
-                <input type="text" class="form-control <?php echo !empty(form_error('ruc')) ? 'is-invalid' : ''; ?>" name="ruc" id="ruc">
-                <?php echo form_error(
-                    'ruc',
-                    '<span class="help-block text-danger">',
-                    '</span>'
-                ) ?>
-            </div>
-
-            <div class="form-group">
                 <label for="type_client_id">Tipo de usuario</label>
                 <select class="form-control <?php echo !empty(form_error('type_client_id')) ? 'is-invalid' : ''; ?>" name="type_client_id" id="type_client_id">
                     <option value="0">Seleccione...</option>

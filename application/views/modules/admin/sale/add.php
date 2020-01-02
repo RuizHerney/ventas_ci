@@ -29,7 +29,7 @@
 
                         <div class="col-md-3">
                             <label for="">Numero:</label>
-                            <input type="text" class="form-control" id="num" name="num"readonly>
+                            <input type="text" class="form-control" id="num" name="num" readonly>
                         </div>
 
                     </div>
@@ -126,26 +126,36 @@
 <!-- /.box -->
 
 <div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Lita de Clientes</h4>
+            <div class="modal-header mr-auto">
+                <h4 class="modal-title">Lista de Clientes</h4>
             </div>
             <div class="modal-body">
-                <table id="example1" class="table table-bordered table-striped table-hover">
+                <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Nombre</th>
-                            <th>Documento</th>
-                            <th>Opcion</th>
+                            <th>N. documento</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        <?php foreach ($clients as $client) : ?>
+                            <tr>
+                                <td><?php echo $client->id ?></td>
+                                <td><?php echo $client->name ?></td>
+                                <td><?php echo $client->num_document ?></td>
+                            </tr>
+                        <?php endforeach ?>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>N. documento</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
             <div class="modal-footer">

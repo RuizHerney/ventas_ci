@@ -16,7 +16,6 @@
                     <th>Nombre</th>
                     <th>Telefono</th>
                     <th>Direccion</th>
-                    <th>RUC</th>
                     <th>T. cliente</th>
                     <th>T. documento</th>
                     <th>N. documento</th>
@@ -30,7 +29,6 @@
                         <td><?php echo $client->name ?></td>
                         <td><?php echo $client->phone ?></td>
                         <td><?php echo $client->address ?></td>
-                        <td><?php echo $client->ruc ?></td>
                         <td><?php echo $client->typeClient ?></td>
                         <td><?php echo $client->typeDocument ?></td>
                         <td><?php echo $client->num_document ?></td>
@@ -56,7 +54,6 @@
                     <th>Nombre</th>
                     <th>Telefono</th>
                     <th>Direccion</th>
-                    <th>RUC</th>
                     <th>T. cliente</th>
                     <th>T. documento</th>
                     <th>N. documento</th>

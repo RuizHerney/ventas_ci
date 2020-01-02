@@ -18,12 +18,6 @@
 
 <p>
     <strong>
-        Ruc : <?php echo $client->ruc;?>
-    </strong>
-</p>
-
-<p>
-    <strong>
         Tipo cliente : <?php echo $client->typeClient;?>
     </strong>
 </p>
