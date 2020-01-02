@@ -54,13 +54,13 @@ class Categoria extends CI_Controller
 		$this->form_validation->set_rules(
 			'name',
 			'Nombre',
-			'required|is_unique[categories.name]',
+			'required|is_unique[categories.name]'
 		);
 
 		$this->form_validation->set_rules(
 			'description',
 			'Descripcion',
-			'required',
+			'required'
 		);
 
 		if ($this->form_validation->run()) {
@@ -75,10 +75,10 @@ class Categoria extends CI_Controller
 			# Validamos que la categoria halla sido registrado correctamente
 			if ($this->CategoryModel->saveGategory($data)) {
 
-				# Lo enviamos a la vista list 
+				# Lo enviamos a la vista list
 				redirect(base_url() . 'matenimiento/categoria');
 			} else {
-				# Lo enviamos a la vista add con sus errores 
+				# Lo enviamos a la vista add con sus errores
 				$this->session->set_flashdata('error', 'No se pudo guradar la informacion');
 				redirect(base_url() . 'categoria/add');
 			}
@@ -126,13 +126,13 @@ class Categoria extends CI_Controller
 		$this->form_validation->set_rules(
 			'description',
 			'Descripcion',
-			'required',
+			'required'
 		);
 
 		$this->form_validation->set_rules(
 			'state_id',
 			'Estado',
-			'required',
+			'required'
 		);
 
 		if ($this->form_validation->run()) {
@@ -146,10 +146,10 @@ class Categoria extends CI_Controller
 
 			# Validamos que el categoria halla sido modificado correctamente
 			if ($this->CategoryModel->updateCategory($id, $data)) {
-				# Lo enviamos a la vista list 
+				# Lo enviamos a la vista list
 				redirect(base_url() . 'matenimiento/categoria');
 			} else {
-				# Lo enviamos a la vista update con sus errores 
+				# Lo enviamos a la vista update con sus errores
 				$this->session->set_flashdata('error', 'No se pudo editar la informacion');
 				redirect(base_url() . 'categoria/edit');
 			}
@@ -164,7 +164,7 @@ class Categoria extends CI_Controller
 		$data = array(
 			'category' => $this->CategoryModel->getGategoryById($id),
 		);
-		# Lo enviamos a la vista view 
+		# Lo enviamos a la vista view
 		$this->load->view('modules/admin/category/view', $data);
 	} # End method view
 
@@ -172,10 +172,10 @@ class Categoria extends CI_Controller
 	{
 		# Validamos que la categoria halla sido eliminado correctamente
 		if ($this->CategoryModel->deleteCategory($id)) {
-			# Lo enviamos a la vista list 
+			# Lo enviamos a la vista list
 			redirect(base_url() . 'matenimiento/categoria');
 		} else {
-			# Lo enviamos a la vista list con sus errores 
+			# Lo enviamos a la vista list con sus errores
 			$this->session->set_flashdata('error', 'No se pudo borrar la informacion');
 			redirect(base_url() . 'matenimiento/categoria');
 		}
