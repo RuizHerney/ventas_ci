@@ -80,7 +80,7 @@ CREATE TABLE `products` (
   `code` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `description` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
-  `price` int(11) NOT NULL,
+  `price` float NOT NULL,
   `stock` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `state_id` int(11) NOT NULL
