@@ -65,7 +65,7 @@
                         </div>
                     </div>
 
-                    <table id="tbventas" class="table table-bordered table-striped table-hover">
+                    <table id="tbsales" class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>Codigo</th>
@@ -102,7 +102,7 @@
                         <div class="col-md-3">
                             <div class="input-group d-flex align-items-center">
                                 <span class="input-group-addon">Descuento:</span>
-                                <input type="text" class="form-control" placeholder="Username" name="descuento" value="0.00" readonly="readonly">
+                                <input type="text" class="form-control" placeholder="Username" name="discount" value="0.00" readonly="readonly">
                             </div>
                         </div>
 
