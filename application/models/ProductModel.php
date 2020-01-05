@@ -29,7 +29,7 @@ class ProductModel extends CI_Model
     {
         $this->db->select('id, code, name as label, price, stock');
 
-        $this->db->from('Products');
+        $this->db->from('products');
 
         $this->db->like('name', $value);
 

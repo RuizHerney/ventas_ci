@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 02-01-2020 a las 14:26:04
--- Versión del servidor: 10.1.31-MariaDB
--- Versión de PHP: 7.2.3
+-- Servidor: localhost
+-- Tiempo de generación: 05-01-2020 a las 14:25:06
+-- Versión del servidor: 10.4.10-MariaDB
+-- Versión de PHP: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,6 +30,7 @@ USE `ventas_ci`;
 -- Estructura de tabla para la tabla `categories`
 --
 
+DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -43,6 +44,7 @@ CREATE TABLE `categories` (
 -- Estructura de tabla para la tabla `clients`
 --
 
+DROP TABLE IF EXISTS `clients`;
 CREATE TABLE `clients` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -60,11 +62,12 @@ CREATE TABLE `clients` (
 -- Estructura de tabla para la tabla `details_sales`
 --
 
+DROP TABLE IF EXISTS `details_sales`;
 CREATE TABLE `details_sales` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `sale_id` int(11) NOT NULL,
-  `price` float NOT NULL,
+  `price` decimal(19,3) NOT NULL,
   `quantity` int(11) NOT NULL,
   `amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -75,12 +78,13 @@ CREATE TABLE `details_sales` (
 -- Estructura de tabla para la tabla `products`
 --
 
+DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `code` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `description` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
-  `price` float NOT NULL,
+  `price` decimal(19,3) NOT NULL,
   `stock` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `state_id` int(11) NOT NULL
@@ -92,6 +96,7 @@ CREATE TABLE `products` (
 -- Estructura de tabla para la tabla `roles`
 --
 
+DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -104,6 +109,7 @@ CREATE TABLE `roles` (
 -- Estructura de tabla para la tabla `sales`
 --
 
+DROP TABLE IF EXISTS `sales`;
 CREATE TABLE `sales` (
   `id` int(11) NOT NULL,
   `date` date NOT NULL,
@@ -124,6 +130,7 @@ CREATE TABLE `sales` (
 -- Estructura de tabla para la tabla `states`
 --
 
+DROP TABLE IF EXISTS `states`;
 CREATE TABLE `states` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -136,6 +143,7 @@ CREATE TABLE `states` (
 -- Estructura de tabla para la tabla `types_clients`
 --
 
+DROP TABLE IF EXISTS `types_clients`;
 CREATE TABLE `types_clients` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -148,6 +156,7 @@ CREATE TABLE `types_clients` (
 -- Estructura de tabla para la tabla `types_documents`
 --
 
+DROP TABLE IF EXISTS `types_documents`;
 CREATE TABLE `types_documents` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -160,6 +169,7 @@ CREATE TABLE `types_documents` (
 -- Estructura de tabla para la tabla `types_voucher`
 --
 
+DROP TABLE IF EXISTS `types_voucher`;
 CREATE TABLE `types_voucher` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -174,6 +184,7 @@ CREATE TABLE `types_voucher` (
 -- Estructura de tabla para la tabla `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
