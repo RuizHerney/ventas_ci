@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <form action="<?php echo base_url(); ?>movimientos/ventas/store" method="POST" class="form-horizontal">
+                <form action="<?php echo base_url(); ?>movimientos/ventas/create" method="POST" class="form-horizontal">
                     <div class="row form-group">
                         <div class="col-md-3">
                             <label for="">Comprobante:</label>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="">Fecha:</label>
-                            <input type="date" class="form-control" name="fecha" required>
+                            <input type="date" class="form-control" name="date" required>
                         </div>
                     </div>
 
