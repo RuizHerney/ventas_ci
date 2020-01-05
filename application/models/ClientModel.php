@@ -20,14 +20,23 @@ class ClientModel extends CI_Model
 
     public function getClients()
     {
+        # Creamos el inner join - con la clase db
+        # Identificamos los campos a traer, de las tablas
         $this->db->select('c.*, tc.name as typeClient, td.name as typeDocument');
+        # Identificamos la tabla principla para el inner join
         $this->db->from('clients c');
+
+        # Identificamos los campos relacionados entre las tablas
         $this->db->join('types_clients tc', 'c.type_client_id = tc.id');
         $this->db->join('types_documents td', 'c.type_document_id = td.id');
+
+        # Filtramos productos en el estado activo
         $this->db->where('c.state_id', '1');
 
+        # Traemos todas los clientes con el inner join
         $clients = $this->db->get();
 
+        # Retornamos los cleitnes
         return $clients->result();
     } # End method getCLients
 

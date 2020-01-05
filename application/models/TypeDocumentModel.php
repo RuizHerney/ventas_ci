@@ -7,6 +7,7 @@ class TypeDocumentModel extends CI_Model
     public function getDocuments()
     {
 
+        # Traemos todas las tipos de cocumentos
         $documents = $this->db->get('types_documents');
 
         return $documents->result();

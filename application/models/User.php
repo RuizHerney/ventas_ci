@@ -6,7 +6,7 @@ class User extends CI_Model
 
     public function login($user_name, $password)
     {
-        # Recuperamos los datos
+        # Recuperamos los datos, y los comparamos
         $this->db->where('user_name', $user_name);
         $this->db->where('password', $password);
 

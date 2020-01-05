@@ -5,6 +5,7 @@ class TypeVoucherModel extends CI_Model
 {
     public function getVouhers()
     {
+        # Traemos todas las tipos de comprobantes
         $vouchers = $this->db->get('types_voucher');
 
         return $vouchers->result();

@@ -6,7 +6,7 @@ class TypeClientModel extends CI_Model
 
     public function getClients()
     {
-
+        # Traemos todas las tipos de clientes
         $clients = $this->db->get('types_clients');
 
         return $clients->result();
