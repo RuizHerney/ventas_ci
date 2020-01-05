@@ -69,7 +69,7 @@ CREATE TABLE `details_sales` (
   `sale_id` int(11) NOT NULL,
   `price` decimal(19,3) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `amount` int(11) NOT NULL
+  `import` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
