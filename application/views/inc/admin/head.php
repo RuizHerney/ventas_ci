@@ -7,6 +7,8 @@
 <!-- Font Awesome Icons -->
 <link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/all.min.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/jquery-ui.css">
+
+<link rel="stylesheet" href="<?php echo base_url();?>public/assets/js/dataTables-export/css/buttons.dataTables.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/adminlte.min.css">
 

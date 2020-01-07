@@ -5,12 +5,21 @@
   <script src="<?php echo base_url() ?>/public/assets/js/bootstrap.bundle.min.js"></script>
   <script src="<?php echo base_url() ?>/public/assets/js/jquery-ui.js"></script>
   <!-- AdminLTE App -->
-  <script src="<?php echo base_url() ?>/public/assets/js/datatable/jquery.dataTables.js"></script>
-  <script src="<?php echo base_url() ?>/public/assets/js/datatable/dataTables.bootstrap4.js"></script>
+  <script src="<?php echo base_url(); ?>/public/assets/js/datatable/jquery.dataTables.js"></script>
+  <script src="<?php echo base_url(); ?>public/assets/js/datatable/dataTables.bootstrap4.js"></script>
+
+  <script src="<?php echo base_url(); ?>public/assets/js/dataTables-export/js/dataTables.buttons.min.js"></script>
+  <script src="<?php echo base_url(); ?>public/assets/js/dataTables-export/js/buttons.flash.min.js"></script>
+  <script src="<?php echo base_url(); ?>public/assets/js/dataTables-export/js/jszip.min.js"></script>
+  <script src="<?php echo base_url(); ?>public/assets/js/dataTables-export/js/pdfmake.min.js"></script>
+  <script src="<?php echo base_url(); ?>public/assets/js/dataTables-export/js/vfs_fonts.js"></script>
+  <script src="<?php echo base_url(); ?>public/assets/js/dataTables-export/js/buttons.html5.min.js"></script>
+  <script src="<?php echo base_url(); ?>public/assets/js/dataTables-export/js/buttons.print.min.js"></script>
+
+
   <!-- AdminLTE App -->
   <script src="<?php echo base_url() ?>/public/assets/js/adminlte.min.js"></script>
   <script src="<?php echo base_url() ?>/public/assets/js/datatable/demo.js"></script>
-
   <script>
     $(function() {
 
@@ -55,6 +64,43 @@
         })
       })
 
+      $('#report_sales').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+          {
+            extend: 'excelHtml5',
+            title: 'Listado de Ventas',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4, 5]
+            }
+          },
+
+          {
+            extend: 'pdfHtml5',
+            title: 'Listado de Ventas',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4, 5]
+            }
+          }
+        ],
+
+        "language": {
+          "lengthMenu": "Mostrar _MENU_ registros por pagina",
+          "zeroRecords": "No se encontraron resultados en su busqueda",
+          "searchPlaceholder": "Buscar registros",
+          "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+          "infoEmpty": "No existen registros",
+          "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+          "search": "Buscar:",
+          "paginate": {
+            "first": "Primero",
+            "last": "Último",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          },
+        }
+      });
+
       $("#example1").DataTable({
         "language": {
           "lengthMenu": "Mostrar _MENU_ registros por pagina",
@@ -94,7 +140,7 @@
         plus();
       })
 
-      $(document).on('click', '.btn-check', function(){
+      $(document).on('click', '.btn-check', function() {
         client = $(this).val();
 
         infoclient = client.split('*');
@@ -107,22 +153,24 @@
 
       $('#product').autocomplete({
 
-        source:function (req, res) {
+        source: function(req, res) {
 
           $.ajax({
-            url:   base_url + 'matenimiento/producto/getProduct',
+            url: base_url + 'matenimiento/producto/getProduct',
             type: 'POST',
             dataType: 'json',
-            data:{ value: req.term},
-            success:function(data){
-                res(data)
+            data: {
+              value: req.term
+            },
+            success: function(data) {
+              res(data)
             }
           });
 
-         },
+        },
         minLength: 2,
         select: function(event, ui) {
-          data = ui.item.id +  '*' + ui.item.code +  '*' + ui.item.label +  '*' + ui.item.price +  '*' + ui.item.stock;
+          data = ui.item.id + '*' + ui.item.code + '*' + ui.item.label + '*' + ui.item.price + '*' + ui.item.stock;
           $('#btn-add').val(data);
         },
       })
@@ -133,32 +181,32 @@
 
         if (data != '') {
           infoProduct = data.split('*');
-          html =  "<tr>";
-          html += "<td> <input type='hidden' name='idproduct[]' value='"+ infoProduct[0]  +"'>" + infoProduct[1] + "</td>";
+          html = "<tr>";
+          html += "<td> <input type='hidden' name='idproduct[]' value='" + infoProduct[0] + "'>" + infoProduct[1] + "</td>";
           html += "<td> " + infoProduct[2] + " </td>";
-          html += "<td> <input type='hidden' name='price[]' value='"+ infoProduct[3]  +"'>" + infoProduct[3] + " </td>";
+          html += "<td> <input type='hidden' name='price[]' value='" + infoProduct[3] + "'>" + infoProduct[3] + " </td>";
           html += "<td> " + infoProduct[4] + " </td>";
           html += "<td> <input type='text' name='quantity[]' value='1' class='quantity'> </td>";
-          html += "<td> <input type='hidden' name='import[]' value='"+ infoProduct[3]  +"'> <p>" + infoProduct[3] + " </p> </td>";
+          html += "<td> <input type='hidden' name='import[]' value='" + infoProduct[3] + "'> <p>" + infoProduct[3] + " </p> </td>";
           html += "<td> <button type='button' class='btn btn-danger btn-remove-product'> <span class='far fa-trash-alt'> </span> </button> </td>";
-          html +=  "</tr>";
+          html += "</tr>";
 
           $('#tbsales tbody').append(html);
 
           plus();
           $('#btn-add').val(null);
           $('#product').val(null);
-        }else{
+        } else {
           alert('Seleccione un producto...');
         }
       })
 
-      $(document).on('click', '.btn-remove-product', function(){
+      $(document).on('click', '.btn-remove-product', function() {
         $(this).closest('tr').remove();
         plus();
       });
 
-      $(document).on('keyup', '#tbsales input.quantity', function(){
+      $(document).on('keyup', '#tbsales input.quantity', function() {
         quantity = $(this).val();
 
         price = $(this).closest('tr').find('td:eq(2)').text();
@@ -171,23 +219,25 @@
         plus();
       });
 
-      $(document).on('click', '.btn-view-sale', function(){
+      $(document).on('click', '.btn-view-sale', function() {
         value_id = $(this).val();
 
         $.ajax({
           url: base_url + 'movimientos/ventas/view',
           type: 'POST',
           dataType: 'html',
-          data:{id:value_id},
-          success: function(data){
+          data: {
+            id: value_id
+          },
+          success: function(data) {
             $('#modal-default .modal-body').html(data);
           }
         });
       });
 
-      $(document).on('click', '.btn-print', function(){
+      $(document).on('click', '.btn-print', function() {
         $('#modal-default .modal-body').print({
-          title : 'Comprobante de Venta'
+          title: 'Comprobante de Venta'
         });
       });
     });
@@ -222,7 +272,7 @@
     function plus() {
       subTotal = 0;
 
-      $('#tbsales tbody tr').each(function(){
+      $('#tbsales tbody tr').each(function() {
         subTotal += Number($(this).find('td:eq(5)').text());
       })
 
@@ -231,7 +281,7 @@
       percentage = $('#igv').val();
 
       igv = subTotal * (percentage / 100);
-      
+
       $("input[name=igv]").val(igv.toFixed(3));
 
       discount = $('input[name=discount]').val();
