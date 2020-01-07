@@ -70,6 +70,6 @@
           <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
-      </div>
+    </div>
       <!-- /.modal -->
 </div>

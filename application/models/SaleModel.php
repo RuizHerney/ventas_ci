@@ -22,7 +22,7 @@ class Salemodel extends CI_Model
         if ($sales->num_rows() > 0) {
             # Retornamos todos los resgistros
             return $sales->result();
-        }else{
+        } else {
             return false;
         }
     } # End method getSales
@@ -33,9 +33,26 @@ class Salemodel extends CI_Model
         return $this->db->insert('sales', $data);
     } # End method saveSales
 
-    public function getSaleById()
+    public function getSaleById($id)
     {
-        //
+        # Identificamos los campos a traer, de las tablas
+        $this->db->select('s.*, c.name as client, c.address, c.phone, c.num_document as document, tv.name as typeVoucher');
+
+        # Identificamos la tabla principla para el inner join
+        $this->db->from('sales s');
+
+        # Identificamos los campos relacionados entre las tablas
+        $this->db->join('clients c', 's.client_id = c.id');
+        $this->db->join('types_voucher tv', 's.type_voucher_id = tv.id');
+
+        # filtramos la venta por el id
+        $this->db->where('s.id', $id);
+
+        # Obtenemos los datos
+        $sale = $this->db->get();
+        
+        # Obtenemos los datos del registro
+        return $sale->row();
     } # End method getSaleById
 
     public function lastId()

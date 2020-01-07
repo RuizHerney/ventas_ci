@@ -137,6 +137,21 @@ class Ventas extends CI_Controller
         }
     } # End method saveDetails
 
+    public function view()
+    {
+        # Recuperamos los datos de la vista que vienen por el method post
+        $id_sale = $this->input->post('id');
+
+        # Array con los datos a enviar a la vista
+        $data = array(
+            'sale'          => $this->SaleModel->getSaleById($id_sale),
+            'details'       => $this->DetailSaleModel->getDetailsSalesById($id_sale)
+        );
+        
+        # Lo enviamos a la vista view
+        $this->load->view('modules/admin/sale/view', $data);
+    } # End method view
+
     public function updateStockProduct($product_id, $quantity)
     {
         // TODO:: Hacer un metodo en el modelo Product que solo obtega el stock

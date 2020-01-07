@@ -169,6 +169,20 @@
 
         plus();
       });
+
+      $(document).on('click', '.btn-view-sale', function(){
+        value_id = $(this).val();
+
+        $.ajax({
+          url: base_url + 'movimientos/ventas/view',
+          type: 'POST',
+          dataType: 'html',
+          data:{id:value_id},
+          success: function(data){
+            $('#modal-default .modal-body').html(data);
+          }
+        });
+      });
     });
 
     function genereNum(num) {
