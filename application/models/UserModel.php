@@ -19,6 +19,12 @@ class UserModel extends CI_Model
         return $users->result();
     } # End method 
 
+    public function saveUser($data)
+    {
+        #
+        return $this->db->insert('users', $data);
+    }
+
     public function login($user_name, $password)
     {
         # Recuperamos los datos, y los comparamos

@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
             <h3 class="card-title"><?php echo $title ?></h3>
-            <a href="<?php echo base_url(); ?>matenimiento/categoria/add" class="btn btn-primary">
+            <a href="<?php echo base_url(); ?>adminstrador/usuarios/add" class="btn btn-primary">
                 <i class="far fa-plus"></i>
             </a>
         </div>
