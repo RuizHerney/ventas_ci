@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if (!empty($sales)): ?>
+                <?php if (!empty($sales)) : ?>
                     <?php foreach ($sales as $sale) : ?>
                         <tr>
                             <td><?php echo $sale->id ?></td>
@@ -56,25 +56,29 @@
             </tfoot>
         </table>
     </div>
-<div class="modal fade" id="modal-default">
+    <div class="modal fade" id="modal-default">
         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Imformacion de la Categoria</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Imformacion de la Categoria</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-print" data-dismiss="modal">
+                        <span class="fa fa-print"></span>
+                        Imprimir
+                    </button>
+                </div>
             </div>
-            <div class="modal-body">
-                        
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
+            <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
     </div>
-      <!-- /.modal -->
+    <!-- /.modal -->
 </div>

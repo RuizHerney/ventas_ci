@@ -1,8 +1,9 @@
   <!-- jQuery -->
   <script src="<?php echo base_url() ?>/public/assets/js/jquery.min.js"></script>
-  <script src="<?php echo base_url() ?>/public/assets/js/jquery-ui.js"></script>
+  <script src="<?php echo base_url() ?>/public/assets/js/Jquery-print/jquery.print.js"></script>
   <!-- Bootstrap 4 -->
   <script src="<?php echo base_url() ?>/public/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url() ?>/public/assets/js/jquery-ui.js"></script>
   <!-- AdminLTE App -->
   <script src="<?php echo base_url() ?>/public/assets/js/datatable/jquery.dataTables.js"></script>
   <script src="<?php echo base_url() ?>/public/assets/js/datatable/dataTables.bootstrap4.js"></script>
@@ -181,6 +182,12 @@
           success: function(data){
             $('#modal-default .modal-body').html(data);
           }
+        });
+      });
+
+      $(document).on('click', '.btn-print', function(){
+        $('#modal-default .modal-body').print({
+          title : 'Comprobante de Venta'
         });
       });
     });
