@@ -1,14 +1,14 @@
 <div class="card">
     <div class="card-header">
-        <form action="#" method="post">
+        <form action="<?php echo current_url()?>" method="post">
             <div class="form-group d-flex justify-content-between align-items-center">
                 <label for="dateStart">Desde:</label>
                 <div class="col-md-3">
-                    <input type="date" class="form-control" name="dateStart">
+                    <input type="date" class="form-control" name="dateStart" value="<?php echo !empty('dateStart') ? $dateStart : '';?>">
                 </div>
                 <label for="dateEnd">Hasta:</label>
                 <div class="col-md-3">
-                    <input type="date" class="form-control" name="dateEnd">
+                    <input type="date" class="form-control" name="dateEnd" value="<?php echo !empty('dateEnd') ? $dateEnd : '';?>">
                 </div>
                 <div class="col-md-4">
                     <input type="submit" name="search" value="Buscar" class="btn btn-primary">

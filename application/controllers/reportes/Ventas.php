@@ -18,10 +18,23 @@ class Ventas extends CI_Controller
 
     public function index()
     {
+        $dateStart = $this->input->post('dateStart');
+        $dateEnd = $this->input->post('dateEnd');
+
+        if ($this->input->post('search')) {
+            
+            $sales = $this->SaleModel->GetSalesByDate($dateStart, $dateEnd);
+        }else{
+
+            $sales = $this->SaleModel->getSales();
+        }
+        
         # Array con los datos a enviar a la vista
         $data = array(
             'title' => 'Reporte Ventas',
-            'sales' => $this->SaleModel->getSales()
+            'sales' => $sales,
+            'dateStart' => $dateStart,
+            'dateEnd' => $dateEnd
         );
 
         # Llamado a la clase template
