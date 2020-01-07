@@ -10,7 +10,7 @@ class Home extends CI_Controller
 		parent::__construct();
 
 		# Instancia con el modelo User
-		$this->load->model('User');
+		$this->load->model('UserModel');
 	} # End mehod __construct
 
 	public function index()
@@ -34,7 +34,7 @@ class Home extends CI_Controller
 		$password = $this->input->post('password');
 
 		# Hacemos la consulta al modelo User
-		$user =  $this->User->login($user_name, sha1($password));
+		$user =  $this->UserModel->login($user_name, sha1($password));
 
 		# Verificamos si esta registrado o no
 		if (!$user) {

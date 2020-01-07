@@ -130,7 +130,14 @@
                 <li class="nav-item">
                   <a href="" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Categorias</p>
+                    <p>Tipo Documento</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url();?>adminstrador/usuarios" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Usuarios</p>
                   </a>
                 </li>
 

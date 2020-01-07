@@ -19,7 +19,6 @@ class Categoria extends CI_Controller
 
 	public function index()
 	{
-
 		# Array con los datos a enviar a la vista
 		$data = array(
 			'title' => 'Categorias',

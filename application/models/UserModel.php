@@ -1,8 +1,23 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class User extends CI_Model
+class UserModel extends CI_Model
 {
+
+
+    public function getUsers()
+    {
+        $this->db->select('u.*, r.name as role');
+        $this->db->from('users u');
+
+        $this->db->join('roles r', 'u.role_id = r.id');
+
+        $this->db->where('u.state_id', 1);
+
+        $users = $this->db->get();
+
+        return $users->result();
+    } # End method 
 
     public function login($user_name, $password)
     {
