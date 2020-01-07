@@ -25,7 +25,8 @@ class Ventas extends CI_Controller
     {
         # Array con los datos a enviar a la vista
         $data = array(
-            'title' => 'Ventas'
+            'title' => 'Ventas',
+            'sales' => $this->SaleModel->getSales()
         );
 
         # Llamado a la clase template
@@ -38,7 +39,7 @@ class Ventas extends CI_Controller
         # Array con los datos a enviar a la vista
         $data = array(
             'title'             => 'Ventas',
-            'Subtitle'          => 'Agregar',
+            'subTitle'          => 'Agregar',
             'vouchers'          => $this->TypeVoucherModel->getVouhers(),
             'clients'           => $this->ClientModel->getClients(),
         );
