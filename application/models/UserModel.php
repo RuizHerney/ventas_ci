@@ -17,6 +17,21 @@ class UserModel extends CI_Model
         $users = $this->db->get();
 
         return $users->result();
+    } # End method
+
+    public function getUserById($id)
+    {
+        $this->db->select('u.*, r.name as role');
+        $this->db->from('users u');
+
+        $this->db->join('roles r', 'u.role_id = r.id');
+
+        $this->db->where('u.id', $id);
+        
+        $user = $this->db->get();
+
+        return $user->row();
+        
     } # End method 
 
     public function saveUser($data)

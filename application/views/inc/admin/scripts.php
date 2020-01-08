@@ -64,6 +64,19 @@
         })
       })
 
+      $('.btn-view-user').on('click', function() {
+        var id = $(this).val();
+
+        $.ajax({
+
+          url: base_url + 'adminstrador/usuarios/view/' + id,
+          type: 'POST',
+          success: function(res) {
+            $('#modal-default .modal-body').html(res);
+          }
+        })
+      })
+
       $('#report_sales').DataTable({
         dom: 'Bfrtip',
         buttons: [

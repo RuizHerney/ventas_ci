@@ -30,6 +30,16 @@ class Usuarios extends CI_Controller
         $this->template->load('admin', 'user/list', $data);
     } # End method index
 
+    public function view($id)
+    {
+        # Array con los datos a enviar a la vista
+		$data = array(
+			'user' => $this->UserModel->getUserById($id),
+		);
+		# Lo enviamos a la vista view
+		$this->load->view('modules/admin/user/view', $data);
+    } # End method view
+
     public function add()
     {
         # Array con los datos a enviar a la vista
