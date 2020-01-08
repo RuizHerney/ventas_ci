@@ -40,6 +40,14 @@ class UserModel extends CI_Model
         return $this->db->insert('users', $data);
     }
 
+    public function updateUser($id, $data)
+    {
+        $this->db->where('id', $id);
+
+        return $this->db->update('users', $data);
+
+    } # End method updateUser
+
     public function login($user_name, $password)
     {
         # Recuperamos los datos, y los comparamos
