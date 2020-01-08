@@ -25,7 +25,7 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
             <li class="nav-item">
-              <a href="<?php echo base_url();?>admin" class="nav-link">
+              <a href="<?php echo base_url(); ?>admin" class="nav-link">
                 <i class="nav-icon fas fa-home"></i>
                 <p>Inicio</p>
               </a>
@@ -44,24 +44,24 @@
               <ul class="nav nav-treeview">
 
                 <li class="nav-item">
-                  <a href="<?php echo base_url();?>matenimiento/categoria" class="nav-link">
+                  <a href="<?php echo base_url(); ?>matenimiento/categoria" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Categorias</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a href="<?php echo base_url();?>matenimiento/cliente" class="nav-link">
+                  <a href="<?php echo base_url(); ?>matenimiento/cliente" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Clientes</p>
-                    
+
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a href="<?php echo base_url();?>matenimiento/producto" class="nav-link">
+                  <a href="<?php echo base_url(); ?>matenimiento/producto" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Productos</p> 
+                    <p>Productos</p>
                   </a>
                 </li>
 
@@ -72,7 +72,7 @@
             <li class="nav-item has-treeview">
 
               <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-line"></i>
+                <i class="nav-icon fas fa-chart-line"></i>
                 <p>
                   Movimientos
                   <i class="right fas fa-angle-left"></i>
@@ -82,7 +82,7 @@
               <ul class="nav nav-treeview">
 
                 <li class="nav-item">
-                  <a href="<?php echo base_url();?>movimientos/ventas" class="nav-link">
+                  <a href="<?php echo base_url(); ?>movimientos/ventas" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Ventas</p>
                   </a>
@@ -105,7 +105,7 @@
               <ul class="nav nav-treeview">
 
                 <li class="nav-item">
-                  <a href="<?php echo base_url();?>reportes/ventas" class="nav-link">
+                  <a href="<?php echo base_url(); ?>reportes/ventas" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Ventas</p>
                   </a>
@@ -135,7 +135,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <a href="<?php echo base_url();?>adminstrador/usuarios" class="nav-link">
+                  <a href="<?php echo base_url(); ?>adminstrador/usuarios" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Usuarios</p>
                   </a>
@@ -147,7 +147,7 @@
 
 
             <li class="nav-item">
-              <a href="<?php echo base_url();?>home/logout" class="nav-link">
+              <a href="<?php echo base_url(); ?>home/logout" class="nav-link">
                 <i class="far fa-power-off nav-icon"></i>
                 <p>Cerrar Sesion</p>
               </a>
