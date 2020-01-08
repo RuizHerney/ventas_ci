@@ -27,11 +27,10 @@ class UserModel extends CI_Model
         $this->db->join('roles r', 'u.role_id = r.id');
 
         $this->db->where('u.id', $id);
-        
+
         $user = $this->db->get();
 
         return $user->row();
-        
     } # End method 
 
     public function saveUser($data)
@@ -45,8 +44,21 @@ class UserModel extends CI_Model
         $this->db->where('id', $id);
 
         return $this->db->update('users', $data);
-
     } # End method updateUser
+
+    public function deleteUser($id)
+    {
+        # Filtramos usuario por id
+        $this->db->where('id', $id);
+
+        # array con datos a editar 
+        $data = array(
+            'state_id' => '2',
+        );
+
+        # Modificamos de la categoria le estado 
+        return $this->db->update('users', $data);
+    } # End method deleteUser
 
     public function login($user_name, $password)
     {
@@ -61,11 +73,10 @@ class UserModel extends CI_Model
         if ($result->num_rows() > 0) {
             # Retornamos el registro
             return $result->row();
-        }else{
+        } else {
             # retotnamos falso
             return false;
         }
-
     } # End method login
 
 } # End class User

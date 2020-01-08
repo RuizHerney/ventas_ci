@@ -216,9 +216,17 @@ class Usuarios extends CI_Controller
         }
     } # End method update
 
-    public function delete()
+    public function delete($id)
     {
-        //
+        # Validamos que la categoria halla sido eliminado correctamente
+		if ($this->UserModel->deleteUser($id)) {
+			# Lo enviamos a la vista list
+			redirect(base_url() . 'adminstrador/usuarios');
+		} else {
+			# Lo enviamos a la vista list con sus errores
+			$this->session->set_flashdata('error', 'No se pudo borrar la informacion');
+			redirect(base_url() . 'adminstrador/usuarios');
+		}
     } # End method delete
 
 } # End class Usuarios
