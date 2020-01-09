@@ -2,8 +2,8 @@
 -- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 05-01-2020 a las 14:25:06
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 09-01-2020 a las 15:47:10
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -30,7 +30,6 @@ USE `ventas_ci`;
 -- Estructura de tabla para la tabla `categories`
 --
 
-DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -44,7 +43,6 @@ CREATE TABLE `categories` (
 -- Estructura de tabla para la tabla `clients`
 --
 
-DROP TABLE IF EXISTS `clients`;
 CREATE TABLE `clients` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -62,14 +60,41 @@ CREATE TABLE `clients` (
 -- Estructura de tabla para la tabla `details_sales`
 --
 
-DROP TABLE IF EXISTS `details_sales`;
 CREATE TABLE `details_sales` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `sale_id` int(11) NOT NULL,
   `price` decimal(19,3) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `import` decimal(11) NOT NULL
+  `import` decimal(19,3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `menus`
+--
+
+CREATE TABLE `menus` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
+  `link` varchar(150) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `p_read` int(11) NOT NULL,
+  `p_insert` int(11) NOT NULL,
+  `p_update` int(11) NOT NULL,
+  `p_delete` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -78,7 +103,6 @@ CREATE TABLE `details_sales` (
 -- Estructura de tabla para la tabla `products`
 --
 
-DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `code` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -96,7 +120,6 @@ CREATE TABLE `products` (
 -- Estructura de tabla para la tabla `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -109,7 +132,6 @@ CREATE TABLE `roles` (
 -- Estructura de tabla para la tabla `sales`
 --
 
-DROP TABLE IF EXISTS `sales`;
 CREATE TABLE `sales` (
   `id` int(11) NOT NULL,
   `date` date NOT NULL,
@@ -130,7 +152,6 @@ CREATE TABLE `sales` (
 -- Estructura de tabla para la tabla `states`
 --
 
-DROP TABLE IF EXISTS `states`;
 CREATE TABLE `states` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -143,7 +164,6 @@ CREATE TABLE `states` (
 -- Estructura de tabla para la tabla `types_clients`
 --
 
-DROP TABLE IF EXISTS `types_clients`;
 CREATE TABLE `types_clients` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -156,7 +176,6 @@ CREATE TABLE `types_clients` (
 -- Estructura de tabla para la tabla `types_documents`
 --
 
-DROP TABLE IF EXISTS `types_documents`;
 CREATE TABLE `types_documents` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -169,7 +188,6 @@ CREATE TABLE `types_documents` (
 -- Estructura de tabla para la tabla `types_voucher`
 --
 
-DROP TABLE IF EXISTS `types_voucher`;
 CREATE TABLE `types_voucher` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -184,7 +202,6 @@ CREATE TABLE `types_voucher` (
 -- Estructura de tabla para la tabla `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
@@ -226,6 +243,20 @@ ALTER TABLE `details_sales`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_id` (`product_id`),
   ADD KEY `sale_id` (`sale_id`);
+
+--
+-- Indices de la tabla `menus`
+--
+ALTER TABLE `menus`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `menu_id` (`menu_id`),
+  ADD KEY `role_id` (`role_id`);
 
 --
 -- Indices de la tabla `products`
@@ -288,8 +319,8 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `username` (`user_name`),
-  ADD KEY `role_id` (`role_id`),
-  ADD KEY `state_id` (`state_id`);
+  ADD KEY `state_id` (`state_id`),
+  ADD KEY `role_id` (`role_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -311,6 +342,18 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT de la tabla `details_sales`
 --
 ALTER TABLE `details_sales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `menus`
+--
+ALTER TABLE `menus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `permissions`
+--
+ALTER TABLE `permissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -386,6 +429,13 @@ ALTER TABLE `details_sales`
   ADD CONSTRAINT `details_sales_ibfk_2` FOREIGN KEY (`sale_id`) REFERENCES `sales` (`id`);
 
 --
+-- Filtros para la tabla `permissions`
+--
+ALTER TABLE `permissions`
+  ADD CONSTRAINT `permissions_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`),
+  ADD CONSTRAINT `permissions_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+
+--
 -- Filtros para la tabla `products`
 --
 ALTER TABLE `products`
@@ -404,8 +454,8 @@ ALTER TABLE `sales`
 -- Filtros para la tabla `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
-  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`);
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`),
+  ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
