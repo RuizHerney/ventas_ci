@@ -83,5 +83,4 @@ class ProductModel extends CI_Model
         return $this->db->delete('products');
     } # End method deleteProduct
 
-
 } # End class ProductModel
