@@ -4,7 +4,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?php echo base_url(); ?>admin" class="nav-link">Home</a>
+            <a href="<?php echo base_url(); ?>admin" class="nav-link">Inicio</a>
         </li>
     </ul>
 
@@ -17,7 +17,6 @@
                         <img src="<?php echo base_url() ?>public/src/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                 </div>
-                <span class="badge badge-danger navbar-badge">3</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 

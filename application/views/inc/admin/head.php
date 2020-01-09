@@ -4,6 +4,8 @@
 
 <title>Ventas</title>
 
+<link rel="shortcut icon" href="<?php echo base_url()?>/public/src/img/sale.ico" type="image/x-icon">
+
 <!-- Font Awesome Icons -->
 <link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/all.min.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/jquery-ui.css">
