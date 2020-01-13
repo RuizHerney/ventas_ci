@@ -53,7 +53,7 @@ class Home extends CI_Controller
 				'id' => $user->id,
 				'name' => $user->name,
 				'last_name' => $user->last_name,
-				'rol' => $user->rol_id,
+				'role' => $user->role_id,
 				'login' => TRUE
 			);
 

@@ -3,26 +3,34 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Categoria extends CI_Controller
 {
+	private $permissions;
+
 	public function __construct()
 	{
 		parent::__construct();
-
-		# Hacemos los llamados a los modelos necesarios
-		$this->load->model('CategoryModel');
-		$this->load->model('StateModel');
 
 		# Validamos si existe una session
 		if (!$this->session->userdata('login')) {
 			redirect(base_url());
 		}
+
+		$this->permissions = $this->backendlib->control();
+
+		# Hacemos los llamados a los modelos necesarios
+		$this->load->model('CategoryModel');
+		$this->load->model('StateModel');
+
 	} # End method __construct
 
 	public function index()
 	{
+
+		$this->backendlib->checkPermissionRead($this->permissions->p_read);
 		# Array con los datos a enviar a la vista
 		$data = array(
-			'title' => 'Categorias',
-			'categories' => $this->CategoryModel->getCategories()
+			'title' 		=> 'Categorias',
+			'categories' 	=> $this->CategoryModel->getCategories(),
+			'permission' 	=> $this->permissions
 		);
 
 		# Llamado a la clase template
