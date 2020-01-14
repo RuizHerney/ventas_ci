@@ -7,6 +7,13 @@ class Ventas extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        
+        # Validamos si existe una session
+        if (!$this->session->userdata('login')) {
+            redirect(base_url());
+        }
+
+        $this->permissions = $this->backendlib->control();
 
         # Cargamos los modelos a utilizar
         $this->load->model('SaleModel');
@@ -14,15 +21,13 @@ class Ventas extends CI_Controller
         $this->load->model('ClientModel');
         $this->load->model('DetailSaleModel');
         $this->load->model('ProductModel');
-
-        # Validamos si existe una session
-        if (!$this->session->userdata('login')) {
-            redirect(base_url());
-        }
     } # End method construct
 
     public function index()
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionRead($this->permissions->p_read);
+        
         # Array con los datos a enviar a la vista
         $data = array(
             'title' => 'Ventas',
@@ -36,6 +41,9 @@ class Ventas extends CI_Controller
 
     public function add()
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionInsert($this->permissions->p_insert);
+        
         # Array con los datos a enviar a la vista
         $data = array(
             'title'             => 'Ventas',
@@ -51,6 +59,9 @@ class Ventas extends CI_Controller
 
     public function create()
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionInsert($this->permissions->p_insert);
+        
         # Recuperamos los datos de la vista que vienen por el method post
         $date               = $this->input->post('date');
         $sub_total          = $this->input->post('subtotal');
@@ -103,6 +114,9 @@ class Ventas extends CI_Controller
 
     protected function updateVoucherQuantity($voucher_id)
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionInsert($this->permissions->p_insert);
+
         # Traemos el comprobante por su a id
         $voucherCurrent = $this->TypeVoucherModel->getVoucherById($voucher_id);
 
@@ -118,6 +132,9 @@ class Ventas extends CI_Controller
 
     protected function saveDetailsSale($sale_id, $products, $price, $quantity, $import)
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionInsert($this->permissions->p_insert);
+
         # Recorremos los productos para guardar cada registro del detalle venta
         for ($i = 0; $i < count($products); $i++) {
             # Array con los datos a enviar al modelo
@@ -139,6 +156,12 @@ class Ventas extends CI_Controller
 
     public function view()
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionRead($this->permissions->p_read);
+        
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionRead($this->permissions->p_read);
+        
         # Recuperamos los datos de la vista que vienen por el method post
         $id_sale = $this->input->post('id');
 
@@ -154,6 +177,9 @@ class Ventas extends CI_Controller
 
     public function updateStockProduct($product_id, $quantity)
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionInsert($this->permissions->p_insert);
+
         // TODO:: Hacer un metodo en el modelo Product que solo obtega el stock
         $productCurrent = $this->ProductModel->getProductById($product_id);
 
