@@ -7,17 +7,22 @@ class Perfiles extends CI_Controller
     {
         parent::__construct();
 
-        # Hacemos los llamados a los modelos necesarios
-        $this->load->model('UserModel');
-
         # Validamos si existe una session
         if (!$this->session->userdata('login')) {
             redirect(base_url());
         }
+
+        $this->permissions = $this->backendlib->control();
+
+        # Hacemos los llamados a los modelos necesarios
+        $this->load->model('UserModel');
     } # End method __construct
 
     public function usuario($id)
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionRead($this->permissions->p_read);
+        
         # Array con los datos a enviar a la vista
         $data = array(
             'title' => 'Perfil',

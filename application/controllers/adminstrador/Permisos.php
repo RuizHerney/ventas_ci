@@ -7,19 +7,24 @@ class Permisos extends CI_Controller
     {
         parent::__construct();
 
-        # Hacemos los llamados a los modelos necesarios
-        $this->load->model('PermissionModel');
-        $this->load->model('RoleModel');
-        $this->load->model('MenuModel');
-
         # Validamos si existe una session
         if (!$this->session->userdata('login')) {
             redirect(base_url());
         }
+
+        $this->permissions = $this->backendlib->control();
+
+        # Hacemos los llamados a los modelos necesarios
+        $this->load->model('PermissionModel');
+        $this->load->model('RoleModel');
+        $this->load->model('MenuModel');
     } # End method __construct
 
     public function index()
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionRead($this->permissions->p_read);
+
         # Array con los datos a enviar a la vista
         $data = array(
             'title' => 'Permisos',
@@ -34,6 +39,9 @@ class Permisos extends CI_Controller
 
     public function add()
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionInsert($this->permissions->p_insert);
+        
         # Array con los datos a enviar a la vista
         $data = array(
             'title'         => 'Permisos',
@@ -49,11 +57,15 @@ class Permisos extends CI_Controller
 
     public function view()
     {
-        //
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionRead($this->permissions->p_read);
     } # End method view
 
     public function create()
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionInsert($this->permissions->p_insert);
+        
         # Recuperamos los datos de la vista que vienen por el method post
         $menu_id = $this->input->post('menu_id');
         $role_id = $this->input->post('role_id');
@@ -84,6 +96,9 @@ class Permisos extends CI_Controller
 
     public function edit($id)
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionUpdate($this->permissions->p_update);
+        
         # Array con los datos a enviar a la vista
         $data = array(
             'title'         => 'Permisos',
@@ -100,6 +115,9 @@ class Permisos extends CI_Controller
 
     public function update($id)
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionUpdate($this->permissions->p_update);
+        
         # Recuperamos los datos de la vista que vienen por el method post
         $menu_id = $this->input->post('menu_id');
         $role_id = $this->input->post('role_id');
@@ -130,6 +148,9 @@ class Permisos extends CI_Controller
 
     public function delete($id)
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionDelete($this->permissions->p_delete);
+        
         # Validamos que la permisos halla sido eliminado correctamente
         if ($this->PermissionModel->deletePermission($id)) {
             # Lo enviamos a la vista list

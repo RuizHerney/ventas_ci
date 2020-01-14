@@ -6,19 +6,25 @@ class Usuarios extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        
+        # Validamos si existe una session
+        if (!$this->session->userdata('login')) {
+            redirect(base_url());
+        }
+
+        $this->permissions = $this->backendlib->control();
 
         # Hacemos los llamados a los modelos necesarios
         $this->load->model('UserModel');
         $this->load->model('RoleModel');
 
-        # Validamos si existe una session
-        if (!$this->session->userdata('login')) {
-            redirect(base_url());
-        }
     } # End method __construct
 
     public function index()
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionRead($this->permissions->p_read);
+        
         # Array con los datos a enviar a la vista
         $data = array(
             'title' => 'Usuarios',
@@ -32,6 +38,9 @@ class Usuarios extends CI_Controller
 
     public function view($id)
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionRead($this->permissions->p_read);
+        
         # Array con los datos a enviar a la vista
         $data = array(
             'user' => $this->UserModel->getUserById($id),
@@ -42,6 +51,9 @@ class Usuarios extends CI_Controller
 
     public function add()
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionInsert($this->permissions->p_insert);
+        
         # Array con los datos a enviar a la vista
         $data = array(
             'title' => 'Usuarios',
@@ -56,6 +68,9 @@ class Usuarios extends CI_Controller
 
     public function create()
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionInsert($this->permissions->p_insert);
+        
         $name = $this->input->post('name');
         $last_name = $this->input->post('last_name');
         $phone = $this->input->post('phone');
@@ -133,6 +148,9 @@ class Usuarios extends CI_Controller
 
     public function edit($id)
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionUpdate($this->permissions->p_update);
+        
         # Array con los datos a enviar a la vista
         $data = array(
             'title' => 'Usuarios',
@@ -148,6 +166,9 @@ class Usuarios extends CI_Controller
 
     public function update($id)
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionUpdate($this->permissions->p_update);
+        
         $name = $this->input->post('name');
         $last_name = $this->input->post('last_name');
         $phone = $this->input->post('phone');
@@ -218,6 +239,9 @@ class Usuarios extends CI_Controller
 
     public function delete($id)
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionDelete($this->permissions->p_delete);
+        
         # Validamos que la categoria halla sido eliminado correctamente
 		if ($this->UserModel->deleteUser($id)) {
 			# Lo enviamos a la vista list
