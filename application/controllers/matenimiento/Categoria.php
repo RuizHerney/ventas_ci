@@ -24,8 +24,9 @@ class Categoria extends CI_Controller
 
 	public function index()
 	{
-
+		# Verificamos que el usuario tenga los permisos necesarios
 		$this->backendlib->checkPermissionRead($this->permissions->p_read);
+
 		# Array con los datos a enviar a la vista
 		$data = array(
 			'title' 		=> 'Categorias',
@@ -40,6 +41,9 @@ class Categoria extends CI_Controller
 
 	public function add()
 	{
+		# Verificamos que el usuario tenga los permisos necesarios
+		$this->backendlib->checkPermissionInsert($this->permissions->p_insert);
+		
 		# Array con los datos a enviar a la vista
 		$data = array(
 			'title' => 'Categorias',
@@ -53,6 +57,9 @@ class Categoria extends CI_Controller
 
 	public function create()
 	{
+		# Verificamos que el usuario tenga los permisos necesarios
+		$this->backendlib->checkPermissionInsert($this->permissions->p_insert);
+
 		# Recuperamos los datos de la vista que vienen por el method post
 		$name = $this->input->post('name');
 		$description = $this->input->post('description');
@@ -96,6 +103,9 @@ class Categoria extends CI_Controller
 
 	public function edit($id)
 	{
+		# Verificamos que el usuario tenga los permisos necesarios
+		$this->backendlib->checkPermissionUpdate($this->permissions->p_update);
+
 		# Array con los datos a enviar a la vista
 		$data = array(
 			'title' => 'Categorias',
@@ -111,6 +121,9 @@ class Categoria extends CI_Controller
 
 	public function update($id)
 	{
+		# Verificamos que el usuario tenga los permisos necesarios
+		$this->backendlib->checkPermissionUpdate($this->permissions->p_update);
+
 		# Recuperamos los datos de la vista que vienen por el method post
 		$name = $this->input->post('name');
 		$description = $this->input->post('description');
@@ -167,6 +180,9 @@ class Categoria extends CI_Controller
 
 	public function view($id)
 	{
+		# Verificamos que el usuario tenga los permisos necesarios
+		$this->backendlib->checkPermissionRead($this->permissions->p_read);
+		
 		# Array con los datos a enviar a la vista
 		$data = array(
 			'category' => $this->CategoryModel->getGategoryById($id),
@@ -177,6 +193,9 @@ class Categoria extends CI_Controller
 
 	public function delete($id)
 	{
+		# Verificamos que el usuario tenga los permisos necesarios
+		$this->backendlib->checkPermissionDelete($this->permissions->p_delete);
+
 		# Validamos que la categoria halla sido eliminado correctamente
 		if ($this->CategoryModel->deleteCategory($id)) {
 			# Lo enviamos a la vista list

@@ -6,21 +6,24 @@ class Cliente extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		# Validamos si existe una session
+		if (!$this->session->userdata('login')) {
+			redirect(base_url());
+		}
+
+		$this->permissions = $this->backendlib->control();
 
 		# Hacemos los llamados a los modelos necesarios
 		$this->load->model('ClientModel');
 		$this->load->model('TypeClientModel');
 		$this->load->model('TypeDocumentModel');
 		$this->load->model('StateModel');
-
-		# Validamos si existe una session
-		if (!$this->session->userdata('login')) {
-			redirect(base_url());
-		}
 	} # End method __construct
 
 	public function index()
 	{
+		# Verificamos que el usuario tenga los permisos necesarios
+		$this->backendlib->checkPermissionRead($this->permissions->p_read);
 
 		# Array con los datos a enviar a la vista
 		$data = array(
@@ -35,6 +38,9 @@ class Cliente extends CI_Controller
 
 	public function add()
 	{
+		# Verificamos que el usuario tenga los permisos necesarios
+		$this->backendlib->checkPermissionInsert($this->permissions->p_insert);
+
 		# Array con los datos a enviar a la vista
 		$data = array(
 			'title' 			=> 'Clientes',
@@ -50,6 +56,9 @@ class Cliente extends CI_Controller
 
 	public function create()
 	{
+		# Verificamos que el usuario tenga los permisos necesarios
+		$this->backendlib->checkPermissionInsert($this->permissions->p_insert);
+
 		# Recuperamos los datos de la vista que vienen por el method post
 		$name = $this->input->post('name');
 		$phone = $this->input->post('phone');
@@ -126,6 +135,9 @@ class Cliente extends CI_Controller
 
 	public function edit($id)
 	{
+		# Verificamos que el usuario tenga los permisos necesarios
+		$this->backendlib->checkPermissionUpdate($this->permissions->p_update);
+
 		# Array con los datos a enviar a la vista
 		$data = array(
 			'title' => 'Clientes',
@@ -153,6 +165,9 @@ class Cliente extends CI_Controller
 		$num_document = $this->input->post('num_document');
 		$type_client_id = $this->input->post('type_client_id'); */
 
+		# Verificamos que el usuario tenga los permisos necesarios
+		$this->backendlib->checkPermissionUpdate($this->permissions->p_update);
+
 		$name = $this->input->post('name');
 		$num_document = $this->input->post('num_document');
 
@@ -160,13 +175,13 @@ class Cliente extends CI_Controller
 
 		if ($name == $client->name) {
 			$is_unique_name = '';
-		}else{
+		} else {
 			$is_unique_name = '|is_unique[clients.name]';
 		}
 
 		if ($num_document == $client->num_document) {
 			$is_unique_cum_document = '';
-		}else{
+		} else {
 			$is_unique_cum_document = '|is_unique[clients.num_document]';
 		}
 
@@ -229,13 +244,16 @@ class Cliente extends CI_Controller
 				$this->session->set_flashdata('error', 'No se pudo editar la informacion');
 				redirect(base_url() . 'cliente/edit');
 			}
-		}else{
+		} else {
 			$this->edit($id);
 		}
 	} # End method udpate
 
 	public function view($id)
 	{
+		# Verificamos que el usuario tenga los permisos necesarios
+		$this->backendlib->checkPermissionRead($this->permissions->p_read);
+
 		# Array con los datos a enviar a la vista
 		$data = array(
 			'client' => $this->ClientModel->getClientById($id),
@@ -246,6 +264,9 @@ class Cliente extends CI_Controller
 
 	public function delete($id)
 	{
+		# Verificamos que el usuario tenga los permisos necesarios
+		$this->backendlib->checkPermissionDelete($this->permissions->p_delete);
+		
 		# Validamos que el cliente halla sido eliminado correctamente
 		if ($this->ClientModel->deleteClient($id)) {
 			# Lo enviamos a la vista list 
