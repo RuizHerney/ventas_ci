@@ -7,28 +7,33 @@ class Ventas extends CI_Controller
     {
         parent::__construct();
 
-        # Cargamos los modelos a utilizar
-        $this->load->model('SaleModel');
-
         # Validamos si existe una session
         if (!$this->session->userdata('login')) {
             redirect(base_url());
         }
+
+        $this->permissions = $this->backendlib->control();
+
+        # Cargamos los modelos a utilizar
+        $this->load->model('SaleModel');
     } # End method __construct
 
     public function index()
     {
+        # Verificamos que el usuario tenga los permisos necesarios
+        $this->backendlib->checkPermissionRead($this->permissions->p_read);
+        
         $dateStart = $this->input->post('dateStart');
         $dateEnd = $this->input->post('dateEnd');
 
         if ($this->input->post('search')) {
-            
+
             $sales = $this->SaleModel->GetSalesByDate($dateStart, $dateEnd);
-        }else{
+        } else {
 
             $sales = $this->SaleModel->getSales();
         }
-        
+
         # Array con los datos a enviar a la vista
         $data = array(
             'title' => 'Reporte Ventas',
