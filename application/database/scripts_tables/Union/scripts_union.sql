@@ -70,3 +70,36 @@ values ('Herney', 'Ruiz Meza', '3022794909', 'herneyruiz@hotmail.com', 'admin', 
 insert into users (name, last_name, phone, email, user_name, password, role_id, state_id)
 values ('Rosmery', 'Gutierrez', '3119876543', 'rosmeryguti@hotmail.com', 'rosmery', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2, 1);
 
+-- Link del inicio
+insert into menus(name, link) values('inicio', 'admin');
+
+-- Lick de matenimiento
+insert into menus(name, link) values('categorias', 'matenimiento/categoria');
+insert into menus(name, link) values('clientes', 'matenimiento/cliente');
+insert into menus(name, link) values('productos', 'matenimiento/producto');
+
+-- Lick de movimientos
+insert into menus(name, link) values('ventas', 'movimientos/ventas');
+
+-- Lick de reportes
+insert into menus(name, link) values('reportes ventas', 'reportes/ventas');
+
+-- Lick de adminstrador
+insert into menus(name, link) values('usuarios', 'adminstrador/usuarios');
+insert into menus(name, link) values('permisos', 'adminstrador/permisos');
+insert into menus(name, link) values('tipo documento', 'adminstrador/permisos');
+insert into menus(name, link) values('menus', 'adminstrador/menus');
+insert into menus(name, link) values('perfiles', 'adminstrador/perfiles');
+
+insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(1, 1, 1, 1, 1, 1);
+insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(2, 1, 1, 1, 1, 1);
+insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(3, 1, 1, 1, 1, 1);
+insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(4, 1, 1, 1, 1, 1);
+insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(5, 1, 1, 1, 1, 1);
+insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(6, 1, 1, 1, 1, 1);
+insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(7, 1, 1, 1, 1, 1);
+insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(8, 1, 1, 1, 1, 1);
+insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(9, 1, 1, 1, 1, 1);
+insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(10, 1, 1, 1, 1, 1);
+insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(11, 1, 1, 1, 1, 1);
+
