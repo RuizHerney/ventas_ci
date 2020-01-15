@@ -1,5 +1,6 @@
 -- Link del inicio
 insert into menus(name, link) values('inicio', 'admin');
+insert into menus(name, link) values('inicio', 'admin/getData');
 
 -- Lick de matenimiento
 insert into menus(name, link) values('categorias', 'matenimiento/categoria');
