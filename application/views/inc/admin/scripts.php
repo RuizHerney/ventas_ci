@@ -32,8 +32,6 @@
 
       var base_url = '<?php echo base_url(); ?>';
 
-      graph();
-
       $('.btn-view-category').on('click', function() {
         var id = $(this).val();
 
@@ -261,6 +259,20 @@
           title: 'Comprobante de Venta'
         });
       });
+
+      if ($("#graph").length > 0) {
+
+        let year = (new Date).getFullYear();
+
+          datagraphic(base_url, year);
+
+        $('#year').on('change', function() {
+
+          yearSelect = $(this).val();
+
+          datagraphic(base_url, yearSelect);
+        })
+      }
     });
 
     function genereNum(num) {
@@ -312,58 +324,71 @@
       $('input[name=total]').val(total.toFixed(3));
     }
 
-    function graph() {
+    function datagraphic(base_url, year) {
+      namesMonth = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dic'];
+
+      $.ajax({
+        url: base_url + 'admin/getData',
+        type: 'POST',
+        data: {
+          year: year
+        },
+        dataType: 'json',
+        success: function(data) {
+          let months = new Array();
+          let amounts = new Array();
+
+          $.each(data, function(key, value) {
+            months.push(namesMonth[value.month - 1]);
+
+            value_amount = Number(value.amount);
+
+            amounts.push(value_amount);
+          })
+          graph(months, amounts, year);
+        }
+      });
+    }
+
+    function graph(months, amounts, year) {
       Highcharts.chart('graph', {
-          chart: {
-            type: 'column'
-          },
+        chart: {
+          type: 'column'
+        },
+        title: {
+          text: 'Monto acumulado por las ventas de los meses'
+        },
+        subtitle: {
+          text: 'Año : ' + year
+        },
+        xAxis: {
+          categories: months,
+          crosshair: true
+        },
+        yAxis: {
+          min: 0,
           title: {
-            text: 'Monto acumulado por las ventas de los meses'
-          },
-          subtitle: {
-            text: 'Año : 2020'
-          },
-          xAxis: {
-            categories: [
-              'Jan',
-              'Feb',
-              'Mar',
-              'Apr',
-              'May',
-              'Jun',
-              'Jul',
-              'Aug',
-              'Sep',
-              'Oct',
-              'Nov',
-              'Dec'
-            ],
-            crosshair: true
-          },
-          yAxis: {
-            min: 0,
-            title: {
-              text: 'Monto Acumulado (pesos)'
-            }
-          },
-          tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">Monto: </td>' +
-              '<td style="padding:0"><b>{point.y:.1f} pesos</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-          },
-          plotOptions: {
-            column: {
-              pointPadding: 0.2,
-              borderWidth: 0
-            }
-          },
-          series: [{
-            name: 'Meses',
-            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
-          }]
-          });
-      }
+            text: 'Monto Acumulado (pesos)'
+          }
+        },
+        tooltip: {
+          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat: '<tr><td style="color:{series.color};padding:0">Monto: </td>' +
+            '<td style="padding:0"><b>{point.y:.2f} pesos</b></td></tr>',
+          footerFormat: '</table>',
+          shared: true,
+          useHTML: true
+        },
+        plotOptions: {
+          column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+          }
+        },
+        series: [{
+          name: 'Meses',
+          data: amounts,
+        }]
+      });
+    }
   </script>

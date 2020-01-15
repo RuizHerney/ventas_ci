@@ -88,6 +88,38 @@ class Salemodel extends CI_Model
         return $this->db->insert_id();
     } # End method lastId
 
+    public function years()
+    {
+        $this->db->select('YEAR(date) as year');
+
+        $this->db->from('sales');
+
+        $this->db->group_by('year');
+
+        $this->db->order_by('year', 'desc');
+
+        $years = $this->db->get();
+
+        return  $years->result();
+    } # End method  years
+
+    public function amounts($year)
+    {
+        $this->db->select('MONTH(date) as month, SUM(total) as amount');
+
+        $this->db->from('sales');
+
+        $this->db->where('date >=', $year . '-01-01');
+        $this->db->where('date <=', $year . '-12-31');
+
+        $this->db->group_by('month');
+        $this->db->order_by('month');
+
+        $amount = $this->db->get();
+
+        return $amount->result();
+    } # End method amounts
+
     public function updateSale()
     {
         //
