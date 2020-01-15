@@ -24,4 +24,15 @@ class BackendModel extends CI_Model
         return $permissions->row();
     } # End method getPermission
 
+    public function rowCount($table)
+    {
+        if ($table != 'sales') {
+            $this->db->where('state_id', '1');
+        }
+
+        $result = $this->db->get($table);
+
+        return $result->num_rows();
+    } # End method rowCount
+
 } # End class MenuModel

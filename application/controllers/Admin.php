@@ -20,7 +20,11 @@ class Admin extends CI_Controller
 	public function index()
 	{
 		$data = array(
-			'permission' => $this->permissions
+			'permission' 	=> $this->permissions,
+			'sales' 		=> $this->backendmodel->rowCount('sales'),
+			'products' 		=> $this->backendmodel->rowCount('products'),
+			'clients' 		=> $this->backendmodel->rowCount('clients'),
+			'users' 		=> $this->backendmodel->rowCount('users'),
 		);
 
 		$this->load->library('template');

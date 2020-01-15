@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/all.min.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/jquery-ui.css">
 
+<link rel="stylesheet" href="<?php echo base_url() ?>/public/assets/css/highcharts/highcharts.css">
+
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
