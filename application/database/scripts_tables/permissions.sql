@@ -10,3 +10,4 @@ insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete)
 insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(10, 1, 1, 1, 1, ,1);
 insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(11, 1, 1, 1, 1, ,1);
 insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(12, 1, 1, 1, 1, ,1);
+insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(13, 1, 1, 1, 1, ,1);

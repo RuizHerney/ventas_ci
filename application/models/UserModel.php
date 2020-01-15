@@ -5,14 +5,14 @@ class UserModel extends CI_Model
 {
 
 
-    public function getUsers()
+    public function getUsers($state)
     {
         $this->db->select('u.*, r.name as role');
         $this->db->from('users u');
 
         $this->db->join('roles r', 'u.role_id = r.id');
 
-        $this->db->where('u.state_id', 1);
+        $this->db->where('u.state_id', $state);
 
         $users = $this->db->get();
 
@@ -45,6 +45,20 @@ class UserModel extends CI_Model
 
         return $this->db->update('users', $data);
     } # End method updateUser
+
+    public function ActiveUser($id)
+    {
+        # Filtramos usuario por id
+        $this->db->where('id', $id);
+
+        # array con datos a editar 
+        $data = array(
+            'state_id' => '1',
+        );
+
+        # Modificamos de la categoria le estado 
+        return $this->db->update('users', $data);
+    }
 
     public function deleteUser($id)
     {

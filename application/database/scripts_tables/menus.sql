@@ -19,4 +19,5 @@ insert into menus(name, link) values('permisos', 'adminstrador/permisos');
 insert into menus(name, link) values('tipo documento', 'adminstrador/permisos');
 insert into menus(name, link) values('menus', 'adminstrador/menus');
 insert into menus(name, link) values('perfiles', 'adminstrador/perfiles');
+insert into menus(name, link) values('papelera', 'adminstrador/papelera');
 

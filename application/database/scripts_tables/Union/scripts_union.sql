@@ -91,6 +91,7 @@ insert into menus(name, link) values('permisos', 'adminstrador/permisos');
 insert into menus(name, link) values('tipo documento', 'adminstrador/permisos');
 insert into menus(name, link) values('menus', 'adminstrador/menus');
 insert into menus(name, link) values('perfiles', 'adminstrador/perfiles');
+insert into menus(name, link) values('papelera', 'adminstrador/papelera');
 
 insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(1, 1, 1, 1, 1, 1);
 insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(2, 1, 1, 1, 1, 1);
@@ -104,4 +105,5 @@ insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete)
 insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(10, 1, 1, 1, 1, 1);
 insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(11, 1, 1, 1, 1, 1);
 insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(12, 1, 1, 1, 1, 1);
+insert into permissions (menu_id, role_id, p_read, p_insert, p_update, p_delete) values(13, 1, 1, 1, 1, 1);
 
